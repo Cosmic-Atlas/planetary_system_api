@@ -1,0 +1,3 @@
+class PlanetarySystem < ApplicationRecord
+
+end
