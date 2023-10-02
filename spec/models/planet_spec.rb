@@ -54,4 +54,18 @@ RSpec.describe Planet do
       expect(Planet.only_true).to eq([@mars, @saturn])
     end
   end
+
+  describe '::search_planet_records' do 
+    it 'searched the planets by exact name' do 
+      the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+      neptune = Planet.create(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
+      mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)  
+
+      expect(Planet.search_planet_records("Neptune")).to match_array([neptune])
+      expect(Planet.search_planet_records("Neptnot")).to match_array(Planet.all)
+      expect(Planet.search_planet_records(nil)).to match_array(Planet.all)
+      expect(Planet.search_planet_records("Mercury")).to match_array([mercury])
+      expect(Planet.search_planet_records("mercury")).to match_array([mercury])
+    end
+  end
 end
