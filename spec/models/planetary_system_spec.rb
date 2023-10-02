@@ -58,4 +58,15 @@ RSpec.describe PlanetarySystem do
       expect(the_solar_system.ordered_by(1900)).to eq([pluto])
     end
   end
+
+  describe '#search_records' do 
+    it 'searches the records by a given keyword and returns the records that match' do 
+      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000)
+
+      expect(PlanetarySystem.search_records("Solar System")).to match_array(the_solar_system)
+      expect(PlanetarySystem.search_records("Solar")).to match_array(PlanetarySystem.all)
+      expect(PlanetarySystem.search_records(nil)).to match_array(PlanetarySystem.all)
+    end
+  end
 end
