@@ -68,5 +68,25 @@ RSpec.describe PlanetarySystem do
       expect(PlanetarySystem.search_records("Solar")).to match_array(PlanetarySystem.all)
       expect(PlanetarySystem.search_records(nil)).to match_array(PlanetarySystem.all)
     end
+
+    it "returns all theplanets if no records is found" do 
+      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+      kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000)
+
+      expect(PlanetarySystem.search_records("Cats")).to match_array(PlanetarySystem.all)
+    end
+
+    it "searches for the records if the planet name was entered lowercase" do 
+      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+      expect(PlanetarySystem.search_records("solar System")).to match_array(the_solar_system)
+    end
+  end
+
+  describe "capitalization callback" do 
+    it "capitalizes the planetary system name if entered lowercased" do 
+      the_solar_system = PlanetarySystem.create!(name: "solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+
+      expect(the_solar_system.name).to eq( "Solar System")
+    end
   end
 end
