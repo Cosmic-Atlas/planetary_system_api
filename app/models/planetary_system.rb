@@ -13,12 +13,7 @@ class PlanetarySystem < ApplicationRecord
   end
 
   def capitalize_planetary_system_name
-    # self.name = name.split.map(&:capitalize).join(" ")
-    self.name = capitalize_function(name)
-  end
-
-  def capitalize_function(input) 
-    input.split.map(&:capitalize).join(" ")
+    self.name = name.split.map(&:capitalize).join(" ")
   end
 
   def ordered_by(order_pattern)
