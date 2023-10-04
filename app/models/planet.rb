@@ -7,7 +7,8 @@ class Planet < ApplicationRecord
   scope :only_true, -> {Planet.where(confirmed: true)}
 
   def capitalize_planet_name 
-    self.name = name.capitalize
+    # self.name = name.capitalize
+    self.name = name.split.map(&:capitalize).join(" ")
   end
 
   def self.search_planet_records(search)
