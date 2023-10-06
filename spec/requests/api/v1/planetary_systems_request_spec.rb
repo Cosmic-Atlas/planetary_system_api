@@ -7,5 +7,10 @@ describe "Planetary Systems API" do
     get "/api/v1/planetary_systems"
 
     expect(response).to be_successful
+
+    planetary_systems = JSON.parse(response.body)
+
+    expect(planetary_systems.count).to eq(3)
+    # require 'pry'; binding.pry
   end
 end
