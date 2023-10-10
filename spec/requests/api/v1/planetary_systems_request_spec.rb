@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Planetary Systems API" do 
+describe "Planetary Systems Requests" do 
   it "sends a list of planetary systems" do 
     create_list(:planetary_system, 3)
 
