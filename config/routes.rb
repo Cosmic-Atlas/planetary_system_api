@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do 
     namespace :v1 do 
       resources :planetary_systems, only: [:index, :show]
+      resources :planets, only: [:index]
     end
   end
 end
