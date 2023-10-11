@@ -10,5 +10,30 @@ describe "Planet Requests" do
     get "/api/v1/planets"
 
     expect(response).to be_successful
+
+    planets = JSON.parse(response.body, symbolize_names: true)
+
+    expect(planets).to have_key(:data)
+    expect(planets[:data].count).to eq(2)
+
+    planets[:data].each do |planet|
+      expect(planet.keys).to match_array([:id, :type, :attributes])
+      expect(planet[:attributes].keys).to match_array([:name, :planet_type, :year_discovered, :confirmed])
+    end
+  end
+
+  it "gets one planet information" do 
+    very_cool_planetary_system = create(:planetary_system)
+    
+    planet_1 = create(:planet, planetary_system_id: very_cool_planetary_system.id)
+
+    get "/api/v1/planets/#{planet_1.id}"
+
+    expect(response).to be_successful 
+
+    parsed_planet = JSON.parse(response.body, symbolize_names: true)
+
+    expect(parsed_planet[:data].keys).to match_array([:id, :type, :attributes])
+    expect(parsed_planet[:data][:attributes].keys).to match_array([:name, :planet_type, :year_discovered, :confirmed])
   end
 end
