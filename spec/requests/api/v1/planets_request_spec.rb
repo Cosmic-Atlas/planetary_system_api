@@ -19,6 +19,10 @@ describe "Planet Requests" do
     planets[:data].each do |planet|
       expect(planet.keys).to match_array([:id, :type, :attributes])
       expect(planet[:attributes].keys).to match_array([:name, :planet_type, :year_discovered, :confirmed])
+      expect(planet[:attributes][:name]).to be_a(String)
+      expect(planet[:attributes][:planet_type]).to be_a(String)
+      expect(planet[:attributes][:year_discovered]).to be_a(Integer)
+      expect(planet[:attributes][:confirmed]).to be_in([true, false])
     end
   end
 

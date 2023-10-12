@@ -16,6 +16,9 @@ describe "Planetary Systems Requests" do
     planetary_systems[:data].each do |system| 
       expect(system.keys).to match_array([:id, :type, :attributes])
       expect(system[:attributes].keys).to match_array([:name, :light_years_from_earth, :star_age])
+      expect(system[:attributes][:name]).to be_a(String)
+      expect(system[:attributes][:light_years_from_earth]).to be_a(Integer)
+      expect(system[:attributes][:star_age]).to be_a(Integer)
     end
   end
 
