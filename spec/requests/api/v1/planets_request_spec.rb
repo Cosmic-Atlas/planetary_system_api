@@ -22,6 +22,7 @@ describe "Planet Requests" do
       expect(planet[:attributes][:name]).to be_a(String)
       expect(planet[:attributes][:planet_type]).to be_a(String)
       expect(planet[:attributes][:year_discovered]).to be_a(Integer)
+      expect(planet[:attributes][:confirmed]).to be_in([true, false])
     end
   end
 
