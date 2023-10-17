@@ -6,4 +6,8 @@ class Api::V1::PlanetarySystemsController < ApplicationController
   def show 
     render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.find(params[:id]))
   end
+
+  def create 
+    
+  end
 end
