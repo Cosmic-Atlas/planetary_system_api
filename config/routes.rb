@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do 
     namespace :v1 do 
-      resources :planetary_systems, only: [:index, :show]
+      resources :planetary_systems, only: [:index, :show, :create]
       resources :planets, only: [:index, :show]
     end
   end
