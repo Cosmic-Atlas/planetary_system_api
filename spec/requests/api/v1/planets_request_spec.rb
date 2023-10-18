@@ -40,4 +40,18 @@ describe "Planet Requests" do
     expect(parsed_planet[:data].keys).to match_array([:id, :type, :attributes])
     expect(parsed_planet[:data][:attributes].keys).to match_array([:name, :planet_type, :year_discovered, :confirmed])
   end
+
+  it "creates a planet" do 
+    planet_params = ({
+                        name: "super system",
+                        light_years_from_earth: 4,
+                        star_age: 123456
+                    })
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    post "/api/v1/planets", headers: headers, params: JSON.generate(planetary_system: planet_params)
+
+    created_system = PlanetarySystem.last 
+
+  end
 end
