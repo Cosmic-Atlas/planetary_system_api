@@ -61,6 +61,25 @@ describe "Planet Requests" do
     expect(created_planet.planet_type).to eq(planet_params[:planet_type])
     expect(created_planet.year_discovered).to eq(planet_params[:year_discovered])
     expect(created_planet.confirmed).to eq(planet_params[:confirmed])
+  end
 
+  it "capitalizes the planet name if entered lowercase" do 
+    planetary_system = create(:planetary_system)
+    planet_params = ({
+                        name: "blue",
+                        planet_type: "Big Round Planet",
+                        year_discovered: 2000,
+                        confirmed: true,
+                        planetary_system_id: planetary_system.id
+                    })
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    post "/api/v1/planets", headers: headers, params: JSON.generate(planet: planet_params)
+
+    created_planet = Planet.last 
+
+    expect(response).to be_successful
+    expect(created_planet.name).to_not eq(planet_params[:name])
+    expect(created_planet.name).to eq("Blue")
   end
 end
