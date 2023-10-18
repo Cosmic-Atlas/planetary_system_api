@@ -13,6 +13,6 @@ class Api::V1::PlanetsController < ApplicationController
 
   private 
     def planet_params 
-      params.require(:planet).permit(:name, :planet_type, :year_discovered, :confirmed)
+      params.require(:planet).permit(:name, :planet_type, :year_discovered, :confirmed, :planetary_system_id)
     end
 end
