@@ -55,10 +55,10 @@ describe "Planet Requests" do
     created_planet = PlanetarySystem.last 
 
     expect(response).to be_successful
-    # expect(created_planet.name).to eq(planet_params[:name])
-    # expect(created_planet.light_years_from_earth).to eq(planet_params[:planet_type])
-    # expect(created_planet.star_age).to eq(planet_params[:year_discovered])
-    # expect(created_planet.star_age).to eq(planet_params[:confirmed])
+    expect(created_planet.name).to eq(planet_params[:name])
+    expect(created_planet.light_years_from_earth).to eq(planet_params[:planet_type])
+    expect(created_planet.star_age).to eq(planet_params[:year_discovered])
+    expect(created_planet.star_age).to eq(planet_params[:confirmed])
 
   end
 end
