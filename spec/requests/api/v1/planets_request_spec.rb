@@ -42,23 +42,25 @@ describe "Planet Requests" do
   end
 
   it "creates a planet" do 
+    planetary_system = create(:planetary_system)
     planet_params = ({
                         name: "Blue",
                         planet_type: "Big Round Planet",
                         year_discovered: 2000,
-                        confirmed: true
+                        confirmed: true,
+                        planetary_system_id: planetary_system.id
                     })
     headers = {"CONTENT_TYPE" => "application/json"}
 
-    post "/api/v1/planets", headers: headers, params: JSON.generate(planetary_system: planet_params)
+    post "/api/v1/planets", headers: headers, params: JSON.generate(planet: planet_params)
 
-    created_planet = PlanetarySystem.last 
+    created_planet = Planet.last 
 
     expect(response).to be_successful
     expect(created_planet.name).to eq(planet_params[:name])
-    expect(created_planet.light_years_from_earth).to eq(planet_params[:planet_type])
-    expect(created_planet.star_age).to eq(planet_params[:year_discovered])
-    expect(created_planet.star_age).to eq(planet_params[:confirmed])
+    expect(created_planet.planet_type).to eq(planet_params[:planet_type])
+    expect(created_planet.year_discovered).to eq(planet_params[:year_discovered])
+    expect(created_planet.confirmed).to eq(planet_params[:confirmed])
 
   end
 end
