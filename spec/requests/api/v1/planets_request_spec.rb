@@ -43,9 +43,10 @@ describe "Planet Requests" do
 
   it "creates a planet" do 
     planet_params = ({
-                        name: "super system",
-                        light_years_from_earth: 4,
-                        star_age: 123456
+                        name: "Blue",
+                        planet_type: "Big Round Planet",
+                        year_discovered: 2000,
+                        confirmed: true
                     })
     headers = {"CONTENT_TYPE" => "application/json"}
 
