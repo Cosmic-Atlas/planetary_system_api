@@ -44,7 +44,7 @@ RSpec.describe Planet do
     end
   end
 
-  describe '#only_true' do 
+  describe '#confirmed_planet' do 
     it 'only shows true records' do 
       # the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
       # neptune = Planet.create(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
