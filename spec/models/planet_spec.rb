@@ -7,6 +7,7 @@ RSpec.describe Planet do
     @mars = Planet.create!(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
     @pluto = Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: @solar_system.id)
     @saturn = Planet.create(name: "Saturn", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
+    @jupiter = Planet.create(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
   end
 
   describe '#attributes' do 
@@ -46,13 +47,19 @@ RSpec.describe Planet do
 
   describe '#confirmed_planets' do 
     it 'only shows true records' do 
-      expect(Planet.confirmed_planets).to eq([@mars, @saturn])
+      expect(Planet.confirmed_planets).to eq([@mars, @saturn, @jupiter])
     end
   end
 
   describe "#unconfirmed_planets" do 
     it "only shows false records" do 
       expect(Planet.unconfirmed_planets).to eq([@pluto])
+    end
+  end
+
+  describe "#filter_planet_type" do 
+    it "collects all planets by their type" do 
+      expect(Planet.filter_planet_type("Gas Giant")).to eq([@saturn, @jupiter])
     end
   end
 
