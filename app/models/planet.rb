@@ -4,7 +4,7 @@ class Planet < ApplicationRecord
   validates :confirmed, inclusion: [true, false]
   before_save :capitalize_planet_name
 
-  scope :confirmed_planet, -> {Planet.where(confirmed: true)}
+  scope :confirmed_planets, -> {Planet.where(confirmed: true)}
 
   def capitalize_planet_name 
     # self.name = name.capitalize
