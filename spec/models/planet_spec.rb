@@ -46,12 +46,7 @@ RSpec.describe Planet do
 
   describe '#confirmed_planet' do 
     it 'only shows true records' do 
-      # the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
-      # neptune = Planet.create(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
-      # pluto = Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: the_solar_system.id)
-      # mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)        
-      # expect(Planet.only_true).to eq([neptune, mercury])
-      expect(Planet.only_true).to eq([@mars, @saturn])
+      expect(Planet.confirmed_planet).to eq([@mars, @saturn])
     end
   end
 
