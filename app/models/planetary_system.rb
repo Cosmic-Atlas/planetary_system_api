@@ -1,10 +1,10 @@
 class PlanetarySystem < ApplicationRecord
   has_many :planets, dependent: :destroy
-  validates :name, presence: true
-  validates :light_years_from_earth, presence: true
-  validates :star_age, presence: true
-  before_save :capitalize_planetary_system_name
+
+  validates_presence_of :name, :light_years_from_earth, :star_age
   # validates :metal_rich_star, inclusion: [true, false]
+
+  before_save :capitalize_planetary_system_name
 
   scope :order_by_created_at, -> {self.order(created_at: :DESC)}
 

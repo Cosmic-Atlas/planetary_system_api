@@ -2,10 +2,12 @@ class Planet < ApplicationRecord
   belongs_to :planetary_system
   validates_presence_of :name, :planet_type, :year_discovered
   validates :confirmed, inclusion: [true, false]
+
   before_save :capitalize_planet_name
 
   scope :confirmed_planets, -> {Planet.where(confirmed: true)}
   scope :unconfirmed_planets, -> {Planet.where(confirmed: false)}
+  scope :filter_planet_type, ->(input) {where(planet_type: input.capitalize)}
 
   def capitalize_planet_name 
     # self.name = name.capitalize
@@ -21,7 +23,7 @@ class Planet < ApplicationRecord
     end
   end
 
-  def self.filter_planet_type(input)
-    where(planet_type: input)
-  end
+  # def self.filter_planet_type(input)
+  #   where(planet_type: input)
+  # end
 end
