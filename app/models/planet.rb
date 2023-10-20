@@ -7,7 +7,7 @@ class Planet < ApplicationRecord
 
   scope :confirmed_planets, -> {Planet.where(confirmed: true)}
   scope :unconfirmed_planets, -> {Planet.where(confirmed: false)}
-  scope :filter_planet_type, ->(input) {where(planet_type: input)}
+  scope :filter_planet_type, ->(input) {where(planet_type: input.capitalize)}
 
   def capitalize_planet_name 
     # self.name = name.capitalize
