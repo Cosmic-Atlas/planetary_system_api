@@ -59,7 +59,6 @@ RSpec.describe Planet do
 
   describe "#filter_planet_type" do 
     it "collects all planets by their type" do 
-      # require 'pry'; binding.pry
       expect(Planet.filter_planet_type("Gas Giant")).to match_array([@saturn, @jupiter])
       expect(Planet.filter_planet_type("Dwarf")).to eq([@pluto])
       expect(Planet.filter_planet_type("Terrestrial")).to eq([@mars])

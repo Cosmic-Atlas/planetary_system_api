@@ -102,8 +102,7 @@ describe "Planet Requests" do
     confirmed_planet_ids = confirmed_planets[:data].map do |planet|
       planet[:id].to_i
     end
-    # require 'pry'; binding.pry
-    expect(confirmed_planet_ids).to match_array([planet_1.id, planet_2.id])
 
+    expect(confirmed_planet_ids).to match_array([planet_1.id, planet_2.id])
   end
 end
