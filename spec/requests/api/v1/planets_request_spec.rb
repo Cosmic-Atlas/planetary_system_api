@@ -90,7 +90,7 @@ describe "Planet Requests" do
     planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
     planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
-    get "/api/v1/planets/confirmed_planets"
+    get "/api/v1/planets/filter/confirmed_planets"
 
     expect(response).to be_successful
 
