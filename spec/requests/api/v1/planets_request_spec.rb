@@ -82,4 +82,18 @@ describe "Planet Requests" do
     expect(created_planet.name).to_not eq(planet_params[:name])
     expect(created_planet.name).to eq("Blue")
   end
+
+  it "gets all the confirmed planets" do 
+    planetary_system = create(:planetary_system)
+
+    planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+    planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+    planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
+
+    get "/api/v1/planets/confirmed_planets"
+
+    expect(response).to be_successful
+
+    # confirmed_planets = JSON.parse(response.body, symbolize_names: true)
+  end
 end
