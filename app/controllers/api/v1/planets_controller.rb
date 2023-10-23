@@ -12,7 +12,7 @@ class Api::V1::PlanetsController < ApplicationController
   end
 
   def confirmed_planets
-    
+    render json: V1::PlanetSerializer.new(Planet.confirmed_planets)
   end
 
   private 
