@@ -94,6 +94,9 @@ describe "Planet Requests" do
 
     expect(response).to be_successful
 
-    # confirmed_planets = JSON.parse(response.body, symbolize_names: true)
+    confirmed_planets = JSON.parse(response.body, symbolize_names: true)
+    
+    expect(confirmed_planets).to have_key(:data)
+    expect(confirmed_planets[:data].count).to eq(2)
   end
 end
