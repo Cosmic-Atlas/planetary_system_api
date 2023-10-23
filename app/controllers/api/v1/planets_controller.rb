@@ -11,6 +11,10 @@ class Api::V1::PlanetsController < ApplicationController
     render json: V1::PlanetSerializer.new(Planet.create!(planet_params))
   end
 
+  def confirmed_planets
+    render json: V1::PlanetSerializer.new(Planet.confirmed_planets)
+  end
+
   private 
     def planet_params 
       params.require(:planet).permit(:name, :planet_type, :year_discovered, :confirmed, :planetary_system_id)
