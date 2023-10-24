@@ -105,4 +105,8 @@ describe "Planet Requests" do
 
     expect(confirmed_planet_ids).to match_array([planet_1.id, planet_2.id])
   end
+
+  it "gets all unconfirmed planets" do 
+    
+  end
 end
