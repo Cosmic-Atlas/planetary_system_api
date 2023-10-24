@@ -107,6 +107,14 @@ describe "Planet Requests" do
   end
 
   it "gets all unconfirmed planets" do 
-    
+    planetary_system = create(:planetary_system)
+
+    planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+    planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+    planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
+
+    get "/api/v1/planets/filter/unconfirmed_planets"
+
+    expect(response).to be_successful
   end
 end
