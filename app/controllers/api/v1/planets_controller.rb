@@ -16,7 +16,7 @@ class Api::V1::PlanetsController < ApplicationController
   end
 
   def unconfirmed_planets 
-    
+    render json: V1::PlanetSerializer.new(Planet.unconfirmed_planets)
   end
 
   private 
