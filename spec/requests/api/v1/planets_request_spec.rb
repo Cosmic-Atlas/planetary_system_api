@@ -116,5 +116,16 @@ describe "Planet Requests" do
     get "/api/v1/planets/filter/unconfirmed_planets"
 
     expect(response).to be_successful
+
+    unconfirmed_planets = JSON.parse(response.body, symbolize_names: true)
+    
+    expect(unconfirmed_planets).to have_key(:data)
+    expect(unconfirmed_planets[:data].count).to eq(1)
+    
+    unconfirmed_planet_ids = unconfirmed_planets[:data].map do |planet|
+      planet[:id].to_i
+    end
+
+    expect(unconfirmed_planet_ids).to match_array([planet_3.id])
   end
 end
