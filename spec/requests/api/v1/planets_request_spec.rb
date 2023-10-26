@@ -90,7 +90,7 @@ describe "Planet Requests" do
     planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
     planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
-    get "/api/v1/planets/filter/confirmed_planets"
+    get "/api/v1/planets/confirmed_planets"
 
     expect(response).to be_successful
 
@@ -113,7 +113,8 @@ describe "Planet Requests" do
     planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
     planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
-    get "/api/v1/planets/filter/unconfirmed_planets"
+    # get "/api/v1/planets/filter/unconfirmed_planets"
+    get "/api/v1/planets/unconfirmed_planets"
 
     expect(response).to be_successful
 
@@ -127,5 +128,27 @@ describe "Planet Requests" do
     end
 
     expect(unconfirmed_planet_ids).to match_array([planet_3.id])
+  end
+
+  it "gets the planets of the searched planet type" do 
+    planetary_system = create(:planetary_system)
+
+    planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+    planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+    planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false, planet_type: "Terrestrial")
+
+    get "/api/v1/planets/planet_type/#{"?planet_type=Gas Giant"}"
+
+    expect(response).to be_successful
+
+    gas_giants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(gas_giants[:data].count).to eq(2)
+
+    gas_giant_ids = gas_giants[:data].map do |planet| 
+      planet[:id].to_i
+    end
+
+    expect(gas_giant_ids).to match_array([planet_1.id, planet_2.id])
   end
 end
