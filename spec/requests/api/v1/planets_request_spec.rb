@@ -144,5 +144,11 @@ describe "Planet Requests" do
     gas_giants = JSON.parse(response.body, symbolize_names: true)
 
     expect(gas_giants[:data].count).to eq(2)
+
+    gas_giant_ids = gas_giants[:data].map do |planet| 
+      planet[:id].to_i
+    end
+
+    expect(gas_giant_ids).to match_array([planet_1.id, planet_2.id])
   end
 end
