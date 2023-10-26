@@ -20,7 +20,7 @@ class Api::V1::PlanetsController < ApplicationController
   end
 
   def by_planet_type 
-    # require 'pry'; binding.pry
+    render json: V1::PlanetSerializer.new(Planet.filter_planet_type(params[:planet_type]))
   end
 
   private 
