@@ -113,7 +113,8 @@ describe "Planet Requests" do
     planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
     planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
-    get "/api/v1/planets/filter/unconfirmed_planets"
+    # get "/api/v1/planets/filter/unconfirmed_planets"
+    get "/api/v1/planets/unconfirmed_planets"
 
     expect(response).to be_successful
 
@@ -129,7 +130,11 @@ describe "Planet Requests" do
     expect(unconfirmed_planet_ids).to match_array([planet_3.id])
   end
 
-  it "gets the planets of the searched planet type" do 
-    
+  xit "gets the planets of the searched planet type" do 
+    planetary_system = create(:planetary_system)
+
+    planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+    planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+    planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false, planet_type: "Terrestrial")
   end
 end
