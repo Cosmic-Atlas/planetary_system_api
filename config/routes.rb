@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       # end
       resources :planets, only: [:index, :show, :create] do 
         collection do 
-          get '/filter/confirmed_planets', :to => 'planets#confirmed_planets' 
+          get :confirmed_planets, :to => 'planets#confirmed_planets' 
           # get '/filter/unconfirmed_planets', :to => 'planets#unconfirmed_planets' 
           get :unconfirmed_planets, :to => "planets#unconfirmed_planets"
         end
