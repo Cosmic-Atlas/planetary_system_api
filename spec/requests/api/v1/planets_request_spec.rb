@@ -128,4 +128,8 @@ describe "Planet Requests" do
 
     expect(unconfirmed_planet_ids).to match_array([planet_3.id])
   end
+
+  it "gets the planets of the searched planet type" do 
+    
+  end
 end
