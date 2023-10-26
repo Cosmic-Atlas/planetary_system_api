@@ -140,5 +140,9 @@ describe "Planet Requests" do
     get "/api/v1/planets/planet_type/#{"?planet_type=Gas Giant"}"
 
     expect(response).to be_successful
+
+    gas_giants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(gas_giants[:data].count).to eq(2)
   end
 end
