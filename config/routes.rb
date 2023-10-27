@@ -7,9 +7,6 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :planetary_systems, only: [:index, :show, :create]
 
-      # resources :planets, only: [:index, :show, :create] do 
-      #   # get '/filter/confirmed_planets', :to => 'planets#confirmed_planets'
-      # end
       resources :planets, only: [:index, :show, :create] do 
         collection do 
           get :confirmed_planets, :to => 'planets#confirmed_planets' 
