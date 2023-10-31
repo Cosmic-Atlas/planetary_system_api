@@ -30,7 +30,8 @@ describe "Planetary Systems Requests" do
 
     parsed_system = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response).to be_successful 
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     expect(parsed_system[:data].keys).to match_array([:id, :type, :attributes])
     expect(parsed_system[:data][:attributes].keys).to match_array([:name, :light_years_from_earth, :star_age])
