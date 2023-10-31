@@ -7,6 +7,7 @@ describe "Planetary Systems Requests" do
     get "/api/v1/planetary_systems"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     planetary_systems = JSON.parse(response.body, symbolize_names: true)
    
