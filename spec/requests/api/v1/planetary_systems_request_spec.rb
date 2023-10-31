@@ -7,6 +7,7 @@ describe "Planetary Systems Requests" do
     get "/api/v1/planetary_systems"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     planetary_systems = JSON.parse(response.body, symbolize_names: true)
    
@@ -29,7 +30,8 @@ describe "Planetary Systems Requests" do
 
     parsed_system = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response).to be_successful 
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     expect(parsed_system[:data].keys).to match_array([:id, :type, :attributes])
     expect(parsed_system[:data][:attributes].keys).to match_array([:name, :light_years_from_earth, :star_age])
@@ -48,6 +50,7 @@ describe "Planetary Systems Requests" do
     created_system = PlanetarySystem.last 
 
     expect(response).to be_successful
+    expect(response.status).to eq(201)
     expect(created_system.name).to eq(system_params[:name])
     expect(created_system.light_years_from_earth).to eq(system_params[:light_years_from_earth])
     expect(created_system.star_age).to eq(system_params[:star_age])
@@ -68,5 +71,19 @@ describe "Planetary Systems Requests" do
     expect(response).to be_successful
     expect(created_system.name).to_not eq(system_params[:name])
     expect(created_system.name).to eq("Super System")
+  end
+
+  it "returns an error if the system doesnt exist" do
+    planetary_system = create(:planetary_system)
+
+    get "/api/v1/planetary_systems/75846"
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=75846"])
+
   end
 end
