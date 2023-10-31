@@ -69,4 +69,18 @@ describe "Planetary Systems Requests" do
     expect(created_system.name).to_not eq(system_params[:name])
     expect(created_system.name).to eq("Super System")
   end
+
+  it "returns an error if the system doesnt exist" do
+    planetary_system = create(:planetary_system)
+
+    get "/api/v1/planetary_systems/75846"
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=75846"])
+
+  end
 end
