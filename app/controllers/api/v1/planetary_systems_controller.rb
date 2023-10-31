@@ -1,14 +1,14 @@
 class Api::V1::PlanetarySystemsController < ApplicationController 
   def index 
-    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.all)
+    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.all), status: 200
   end
 
   def show 
-    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.find(params[:id]))
+    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.find(params[:id])), status: 200
   end
 
   def create 
-    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.create!(planetary_system_params))
+    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.create!(planetary_system_params)), status: 201
   end
 
   private 
