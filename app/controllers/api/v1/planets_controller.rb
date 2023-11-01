@@ -8,7 +8,7 @@ class Api::V1::PlanetsController < ApplicationController
   end
 
   def create 
-    render json: V1::PlanetSerializer.new(Planet.create!(planet_params))
+    render json: V1::PlanetSerializer.new(Planet.create!(planet_params)), status: 201
   end
 
   def confirmed_planets
