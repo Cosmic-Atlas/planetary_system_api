@@ -12,15 +12,15 @@ class Api::V1::PlanetsController < ApplicationController
   end
 
   def confirmed_planets
-    render json: V1::PlanetSerializer.new(Planet.confirmed_planets)
+    render json: V1::PlanetSerializer.new(Planet.confirmed_planets), status: 200
   end
 
   def unconfirmed_planets 
-    render json: V1::PlanetSerializer.new(Planet.unconfirmed_planets)
+    render json: V1::PlanetSerializer.new(Planet.unconfirmed_planets), status: 200
   end
 
   def by_planet_type 
-    render json: V1::PlanetSerializer.new(Planet.filter_planet_type(params[:planet_type]))
+    render json: V1::PlanetSerializer.new(Planet.filter_planet_type(params[:planet_type])), status: 200
   end
 
   private 
