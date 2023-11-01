@@ -120,6 +120,7 @@ describe "Planet Requests" do
     get "/api/v1/planets/unconfirmed_planets"
 
     expect(response).to be_successful
+    expect(response).to eq(200)
 
     unconfirmed_planets = JSON.parse(response.body, symbolize_names: true)
     
