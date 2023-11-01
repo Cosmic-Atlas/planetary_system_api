@@ -10,6 +10,7 @@ describe "Planet Requests" do
     get "/api/v1/planets"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     planets = JSON.parse(response.body, symbolize_names: true)
 
@@ -33,7 +34,8 @@ describe "Planet Requests" do
 
     get "/api/v1/planets/#{planet_1.id}"
 
-    expect(response).to be_successful 
+    expect(response).to be_successful
+    expect(response.status).to eq(200) 
 
     parsed_planet = JSON.parse(response.body, symbolize_names: true)
 
@@ -57,6 +59,7 @@ describe "Planet Requests" do
     created_planet = Planet.last 
 
     expect(response).to be_successful
+    expect(response.status).to eq(201)
     expect(created_planet.name).to eq(planet_params[:name])
     expect(created_planet.planet_type).to eq(planet_params[:planet_type])
     expect(created_planet.year_discovered).to eq(planet_params[:year_discovered])
@@ -93,6 +96,7 @@ describe "Planet Requests" do
     get "/api/v1/planets/confirmed_planets"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     confirmed_planets = JSON.parse(response.body, symbolize_names: true)
     
@@ -116,6 +120,7 @@ describe "Planet Requests" do
     get "/api/v1/planets/unconfirmed_planets"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     unconfirmed_planets = JSON.parse(response.body, symbolize_names: true)
     
@@ -139,6 +144,7 @@ describe "Planet Requests" do
     get "/api/v1/planets/planet_type/#{"?planet_type=Gas Giant"}"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     gas_giants = JSON.parse(response.body, symbolize_names: true)
 
@@ -149,5 +155,25 @@ describe "Planet Requests" do
     end
 
     expect(gas_giant_ids).to match_array([planet_1.id, planet_2.id])
+  end
+
+  describe "errors" do 
+    before(:each) do 
+      @planetary_system = create(:planetary_system)
+
+      @planet_1 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      @planet_2 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Terrestrial")
+    end
+
+    it "returns an error when the id does not exist for a planet" do 
+      get "/api/v1/planets/4385"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["Couldn't find Planet with 'id'=4385"])
+    end
   end
 end
