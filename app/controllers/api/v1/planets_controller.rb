@@ -1,10 +1,10 @@
 class Api::V1::PlanetsController < ApplicationController 
   def index 
-    render json: V1::PlanetSerializer.new(Planet.all)
+    render json: V1::PlanetSerializer.new(Planet.all), status: 200
   end
 
   def show 
-    render json: V1::PlanetSerializer.new(Planet.find(params[:id]))  
+    render json: V1::PlanetSerializer.new(Planet.find(params[:id])), status: 200  
   end
 
   def create 
