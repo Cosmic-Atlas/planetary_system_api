@@ -96,6 +96,7 @@ describe "Planet Requests" do
     get "/api/v1/planets/confirmed_planets"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     confirmed_planets = JSON.parse(response.body, symbolize_names: true)
     
