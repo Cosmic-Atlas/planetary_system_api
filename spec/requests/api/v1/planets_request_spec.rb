@@ -59,6 +59,7 @@ describe "Planet Requests" do
     created_planet = Planet.last 
 
     expect(response).to be_successful
+    expect(response.status).to eq(201)
     expect(created_planet.name).to eq(planet_params[:name])
     expect(created_planet.planet_type).to eq(planet_params[:planet_type])
     expect(created_planet.year_discovered).to eq(planet_params[:year_discovered])
