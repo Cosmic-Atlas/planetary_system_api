@@ -34,7 +34,8 @@ describe "Planet Requests" do
 
     get "/api/v1/planets/#{planet_1.id}"
 
-    expect(response).to be_successful 
+    expect(response).to be_successful
+    expect(response.status).to eq(200) 
 
     parsed_planet = JSON.parse(response.body, symbolize_names: true)
 
