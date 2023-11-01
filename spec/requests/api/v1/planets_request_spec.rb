@@ -10,6 +10,7 @@ describe "Planet Requests" do
     get "/api/v1/planets"
 
     expect(response).to be_successful
+    expect(response.status).to eq(200)
 
     planets = JSON.parse(response.body, symbolize_names: true)
 
