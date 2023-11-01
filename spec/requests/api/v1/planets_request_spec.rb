@@ -120,7 +120,7 @@ describe "Planet Requests" do
     get "/api/v1/planets/unconfirmed_planets"
 
     expect(response).to be_successful
-    expect(response).to eq(200)
+    expect(response.status).to eq(200)
 
     unconfirmed_planets = JSON.parse(response.body, symbolize_names: true)
     
@@ -144,7 +144,7 @@ describe "Planet Requests" do
     get "/api/v1/planets/planet_type/#{"?planet_type=Gas Giant"}"
 
     expect(response).to be_successful
-    expect(response).to eq(200)
+    expect(response.status).to eq(200)
 
     gas_giants = JSON.parse(response.body, symbolize_names: true)
 
