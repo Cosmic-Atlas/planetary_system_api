@@ -156,4 +156,17 @@ describe "Planet Requests" do
 
     expect(gas_giant_ids).to match_array([planet_1.id, planet_2.id])
   end
+
+  describe "errors" do 
+    before(:each) do 
+      @planetary_system = create(:planetary_system)
+
+      @planet_1 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      @planet_2 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Terrestrial")
+    end
+
+    it "returns an error when the id does not exist for a planet" do 
+      
+    end
+  end
 end
