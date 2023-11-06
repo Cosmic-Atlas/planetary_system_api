@@ -84,6 +84,5 @@ describe "Planetary Systems Requests" do
     error = JSON.parse(response.body, symbolize_names: true)
 
     expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=75846"])
-
   end
 end

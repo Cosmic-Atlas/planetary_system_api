@@ -175,5 +175,14 @@ describe "Planet Requests" do
 
       expect(error[:errors]).to eq(["Couldn't find Planet with 'id'=4385"])
     end
+
+    it "returns an error when no id is provided" do 
+      get "/api/v1/planets/b"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+    end
   end
 end
