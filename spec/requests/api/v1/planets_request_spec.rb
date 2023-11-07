@@ -200,8 +200,12 @@ describe "Planet Requests" do
 
       # created_planet = Planet.last 
 
-      expect(response).to be_successful
-      expect(response.status).to eq(201)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["aaaa"])
     end
   end
 end
