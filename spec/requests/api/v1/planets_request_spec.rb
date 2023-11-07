@@ -186,5 +186,22 @@ describe "Planet Requests" do
 
       expect(error[:errors]).to eq(["Couldn't find Planet with 'id'=b"])
     end
+
+    it "returns an error when creating if a required value is not provided" do 
+      planet_params = ({
+                        name: "Blue",
+                        year_discovered: 2000,
+                        confirmed: true,
+                        planetary_system_id: @planetary_system.id
+                    }) #no planet_type provided
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post "/api/v1/planets", headers: headers, params: JSON.generate(planet: planet_params)
+
+      # created_planet = Planet.last 
+
+      expect(response).to be_successful
+      expect(response.status).to eq(201)
+    end
   end
 end
