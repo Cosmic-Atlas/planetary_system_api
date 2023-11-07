@@ -198,14 +198,13 @@ describe "Planet Requests" do
 
       post "/api/v1/planets", headers: headers, params: JSON.generate(planet: planet_params)
 
-      # created_planet = Planet.last 
-
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
 
       error = JSON.parse(response.body, symbolize_names: true)
 
-      expect(error[:errors]).to eq(["aaaa"])
+      expect(error[:errors]).to eq(["Validation failed: Planet type can't be blank"])
+      expect(Planet.count).to eq(2)
     end
   end
 end
