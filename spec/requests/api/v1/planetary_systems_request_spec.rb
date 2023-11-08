@@ -101,6 +101,6 @@ describe "Planetary Systems Requests" do
 
     error = JSON.parse(response.body, symbolize_names: true)
 
-    expect(error[:errors]).to eq(["raaaah"])
+    expect(error[:errors]).to eq(["Validation failed: Name can't be blank"])
   end
 end
