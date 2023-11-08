@@ -86,6 +86,19 @@ describe "Planetary Systems Requests" do
     expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=75846"])
   end
 
+  it "returns an error if a letter is provided for id" do 
+    planetary_system = create(:planetary_system)
+
+    get "/api/v1/planetary_systems/hey"
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=hey"])
+  end
+
   it "returns an error when a required valueisnt provided to create" do 
     system_params = ({
                         light_years_from_earth: 4,
