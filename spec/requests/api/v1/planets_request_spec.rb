@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Planet Requests" do
+  
+  # *~* VALID REQUESTS *~*
   describe "Requests" do 
     before(:each) do 
       @planetary_system = create(:planetary_system)
@@ -145,6 +147,7 @@ describe "Planet Requests" do
     end
   end
 
+  # *~* INVALID REQUESTS *~*
   describe "errors" do 
     before(:each) do 
       @planetary_system = create(:planetary_system)
