@@ -3,18 +3,18 @@ require "rails_helper"
 describe "Planet Requests" do
   describe "Requests" do 
     before(:each) do 
-      planetary_system = create(:planetary_system)
+      @planetary_system = create(:planetary_system)
 
-      planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
-      planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
-      planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false, planet_type: "Terrestrial")
+      @planet_1 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      @planet_2 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      @planet_3 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: false, planet_type: "Terrestrial")
     end
 
     it "sends a list of planets" do 
       # planetary_system = create(:planetary_system)
       
-      # planet_1 = create(:planet, planetary_system_id: planetary_system.id)
-      # planet_2 = create(:planet, planetary_system_id: planetary_system.id)
+      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id)
+      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id)
 
       get "/api/v1/planets"
 
@@ -24,7 +24,7 @@ describe "Planet Requests" do
       planets = JSON.parse(response.body, symbolize_names: true)
 
       expect(planets).to have_key(:data)
-      expect(planets[:data].count).to eq(2)
+      expect(planets[:data].count).to eq(3)
 
       planets[:data].each do |planet|
         expect(planet.keys).to match_array([:id, :type, :attributes])
@@ -39,9 +39,9 @@ describe "Planet Requests" do
     it "gets one planet information" do 
       # very_cool_planetary_system = create(:planetary_system)
       
-      # planet_1 = create(:planet, planetary_system_id: very_cool_planetary_system.id)
+      # @planet_1 = create(:planet, planetary_system_id: very_cool_planetary_system.id)
 
-      get "/api/v1/planets/#{planet_1.id}"
+      get "/api/v1/planets/#{@planet_1.id}"
 
       expect(response).to be_successful
       expect(response.status).to eq(200) 
@@ -59,7 +59,7 @@ describe "Planet Requests" do
                           planet_type: "Big Round Planet",
                           year_discovered: 2000,
                           confirmed: true,
-                          planetary_system_id: planetary_system.id
+                          planetary_system_id: @planetary_system.id
                       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
@@ -82,7 +82,7 @@ describe "Planet Requests" do
                           planet_type: "Big Round Planet",
                           year_discovered: 2000,
                           confirmed: true,
-                          planetary_system_id: planetary_system.id
+                          planetary_system_id: @planetary_system.id
                       })
       headers = {"CONTENT_TYPE" => "application/json"}
 
@@ -98,9 +98,9 @@ describe "Planet Requests" do
     it "gets all the confirmed planets" do 
       # planetary_system = create(:planetary_system)
 
-      # planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
+      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+      # @planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
       get "/api/v1/planets/confirmed_planets"
 
@@ -116,15 +116,15 @@ describe "Planet Requests" do
         planet[:id].to_i
       end
 
-      expect(confirmed_planet_ids).to match_array([planet_1.id, planet_2.id])
+      expect(confirmed_planet_ids).to match_array([@planet_1.id, @planet_2.id])
     end
 
     it "gets all unconfirmed planets" do 
       # planetary_system = create(:planetary_system)
 
-      # planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
+      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
+      # @planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
       get "/api/v1/planets/unconfirmed_planets"
 
@@ -140,15 +140,15 @@ describe "Planet Requests" do
         planet[:id].to_i
       end
 
-      expect(unconfirmed_planet_ids).to match_array([planet_3.id])
+      expect(unconfirmed_planet_ids).to match_array([@planet_3.id])
     end
 
     it "gets the planets of the searched planet type" do 
       # planetary_system = create(:planetary_system)
 
-      # planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
-      # planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
-      # planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false, planet_type: "Terrestrial")
+      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      # @planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false, planet_type: "Terrestrial")
 
       get "/api/v1/planets/planet_type/#{"?planet_type=Gas Giant"}"
 
@@ -163,7 +163,7 @@ describe "Planet Requests" do
         planet[:id].to_i
       end
 
-      expect(gas_giant_ids).to match_array([planet_1.id, planet_2.id])
+      expect(gas_giant_ids).to match_array([@planet_1.id, @planet_2.id])
     end
   end
 
@@ -270,7 +270,7 @@ describe "Planet Requests" do
 
   #   planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
   #   planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-  #   planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
+  #   @planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
   #   get "/api/v1/planets/confirmed_planets"
 
