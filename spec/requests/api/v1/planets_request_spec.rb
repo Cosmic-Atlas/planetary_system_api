@@ -11,10 +11,6 @@ describe "Planet Requests" do
     end
 
     it "sends a list of planets" do 
-      # planetary_system = create(:planetary_system)
-      
-      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id)
-      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id)
 
       get "/api/v1/planets"
 
@@ -37,9 +33,6 @@ describe "Planet Requests" do
     end
 
     it "gets one planet information" do 
-      # very_cool_planetary_system = create(:planetary_system)
-      
-      # @planet_1 = create(:planet, planetary_system_id: very_cool_planetary_system.id)
 
       get "/api/v1/planets/#{@planet_1.id}"
 
@@ -53,7 +46,7 @@ describe "Planet Requests" do
     end
 
     it "creates a planet" do 
-      # planetary_system = create(:planetary_system)
+  
       planet_params = ({
                           name: "Blue",
                           planet_type: "Big Round Planet",
@@ -76,7 +69,7 @@ describe "Planet Requests" do
     end
 
     it "capitalizes the planet name if entered lowercase" do 
-      # planetary_system = create(:planetary_system)
+    
       planet_params = ({
                           name: "blue",
                           planet_type: "Big Round Planet",
@@ -96,11 +89,6 @@ describe "Planet Requests" do
     end
 
     it "gets all the confirmed planets" do 
-      # planetary_system = create(:planetary_system)
-
-      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # @planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
       get "/api/v1/planets/confirmed_planets"
 
@@ -120,11 +108,6 @@ describe "Planet Requests" do
     end
 
     it "gets all unconfirmed planets" do 
-      # planetary_system = create(:planetary_system)
-
-      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true)
-      # @planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false)
 
       get "/api/v1/planets/unconfirmed_planets"
 
@@ -144,11 +127,6 @@ describe "Planet Requests" do
     end
 
     it "gets the planets of the searched planet type" do 
-      # planetary_system = create(:planetary_system)
-
-      # @planet_1 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
-      # @planet_2 = create(:planet, planetary_system_id: planetary_system.id, confirmed: true, planet_type: "Gas Giant")
-      # @planet_3 = create(:planet, planetary_system_id: planetary_system.id, confirmed: false, planet_type: "Terrestrial")
 
       get "/api/v1/planets/planet_type/#{"?planet_type=Gas Giant"}"
 
@@ -166,19 +144,6 @@ describe "Planet Requests" do
       expect(gas_giant_ids).to match_array([@planet_1.id, @planet_2.id])
     end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   # it "sends a list of planets" do 
   #   very_cool_planetary_system = create(:planetary_system)
