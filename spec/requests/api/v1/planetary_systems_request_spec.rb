@@ -73,47 +73,54 @@ describe "Planetary Systems Requests" do
     expect(created_system.name).to eq("Super System")
   end
 
-  it "returns an error if the system doesnt exist" do
-    planetary_system = create(:planetary_system)
+  #-------------------------------------------------------------
+  #-------------------------------------------------------------
+  #-------------------------------------------------------------
+  #-------------------------------------------------------------
 
-    get "/api/v1/planetary_systems/75846"
+  describe "errors" do 
+    it "returns an error if the system doesnt exist" do
+      planetary_system = create(:planetary_system)
 
-    expect(response).to_not be_successful
-    expect(response.status).to eq(404)
+      get "/api/v1/planetary_systems/75846"
 
-    error = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
 
-    expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=75846"])
-  end
+      error = JSON.parse(response.body, symbolize_names: true)
 
-  it "returns an error if a letter is provided for id" do 
-    planetary_system = create(:planetary_system)
+      expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=75846"])
+    end
 
-    get "/api/v1/planetary_systems/hey"
+    it "returns an error if a letter is provided for id" do 
+      planetary_system = create(:planetary_system)
 
-    expect(response).to_not be_successful
-    expect(response.status).to eq(404)
+      get "/api/v1/planetary_systems/hey"
 
-    error = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
 
-    expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=hey"])
-  end
+      error = JSON.parse(response.body, symbolize_names: true)
 
-  it "returns an error when a required valueisnt provided to create" do 
-    system_params = ({
-                        light_years_from_earth: 4,
-                        star_age: 123456
-                    }) #name is not provided
-    headers = {"CONTENT_TYPE" => "application/json"}
+      expect(error[:errors]).to eq(["Couldn't find PlanetarySystem with 'id'=hey"])
+    end
 
-    post "/api/v1/planetary_systems", headers: headers, params: JSON.generate(planetary_system: system_params)
+    it "returns an error when a required value isnt provided to create" do 
+      system_params = ({
+                          light_years_from_earth: 4,
+                          star_age: 123456
+                      }) #name is not provided
+      headers = {"CONTENT_TYPE" => "application/json"}
 
-    expect(response).to_not be_successful
-    expect(response.status).to eq(404)
-    expect(PlanetarySystem.count).to eq(0)
+      post "/api/v1/planetary_systems", headers: headers, params: JSON.generate(planetary_system: system_params)
 
-    error = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+      expect(PlanetarySystem.count).to eq(0)
 
-    expect(error[:errors]).to eq(["Validation failed: Name can't be blank"])
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["Validation failed: Name can't be blank"])
+    end
   end
 end
