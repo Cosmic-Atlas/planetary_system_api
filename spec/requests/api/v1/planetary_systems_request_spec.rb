@@ -1,10 +1,15 @@
 require "rails_helper"
 
 describe "Planetary Systems Requests" do
-  describe "Requests" do 
+  describe "Requests" do
+    before(:each) do 
+      @planetary_system_1 = create(:planetary_system)
+      @planetary_system_2 = create(:planetary_system)
+      @planetary_system_3 = create(:planetary_system)
+    end
 
     it "sends a list of planetary systems" do 
-      create_list(:planetary_system, 3)
+      # create_list(:planetary_system, 3)
 
       get "/api/v1/planetary_systems"
 
@@ -26,9 +31,9 @@ describe "Planetary Systems Requests" do
     end
 
     it "gets one planetary system information" do 
-      planetary_system = create(:planetary_system)
+      # planetary_system = create(:planetary_system)
 
-      get "/api/v1/planetary_systems/#{planetary_system.id}"
+      get "/api/v1/planetary_systems/#{@planetary_system_1.id}"
 
       parsed_system = JSON.parse(response.body, symbolize_names: true)
 
@@ -56,6 +61,7 @@ describe "Planetary Systems Requests" do
       expect(created_system.name).to eq(system_params[:name])
       expect(created_system.light_years_from_earth).to eq(system_params[:light_years_from_earth])
       expect(created_system.star_age).to eq(system_params[:star_age])
+      # expect(PlanetarySystem.count).to eq(4)
     end
 
     it "capitalizes the planetary system is entered lowercase" do 
