@@ -77,11 +77,13 @@ describe "Planetary Systems Requests" do
   #-------------------------------------------------------------
   #-------------------------------------------------------------
   #-------------------------------------------------------------
-
+  
+   # *~* INVALID REQUESTS *~*
   describe "errors" do 
     before(:each) do 
       @planetary_system = create(:planetary_system)
     end
+
     it "returns an error if the system doesnt exist" do
 
       get "/api/v1/planetary_systems/75846"
