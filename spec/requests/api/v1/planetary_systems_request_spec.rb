@@ -61,7 +61,7 @@ describe "Planetary Systems Requests" do
       expect(created_system.name).to eq(system_params[:name])
       expect(created_system.light_years_from_earth).to eq(system_params[:light_years_from_earth])
       expect(created_system.star_age).to eq(system_params[:star_age])
-      # expect(PlanetarySystem.count).to eq(4)
+      expect(PlanetarySystem.count).to eq(4)
     end
 
     it "capitalizes the planetary system is entered lowercase" do 
