@@ -79,8 +79,10 @@ describe "Planetary Systems Requests" do
   #-------------------------------------------------------------
 
   describe "errors" do 
+    before(:each) do 
+      @planetary_system = create(:planetary_system)
+    end
     it "returns an error if the system doesnt exist" do
-      planetary_system = create(:planetary_system)
 
       get "/api/v1/planetary_systems/75846"
 
@@ -93,8 +95,7 @@ describe "Planetary Systems Requests" do
     end
 
     it "returns an error if a letter is provided for id" do 
-      planetary_system = create(:planetary_system)
-
+  
       get "/api/v1/planetary_systems/hey"
 
       expect(response).to_not be_successful
@@ -116,7 +117,7 @@ describe "Planetary Systems Requests" do
 
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
-      expect(PlanetarySystem.count).to eq(0)
+      expect(PlanetarySystem.count).to eq(1)
 
       error = JSON.parse(response.body, symbolize_names: true)
 
