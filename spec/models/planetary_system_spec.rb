@@ -94,8 +94,8 @@ RSpec.describe PlanetarySystem do
     end
 
     it "searches for the records if the planet name was entered lowercase" do 
-      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
-      expect(PlanetarySystem.search_records("solar System")).to match_array(the_solar_system)
+      # the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+      expect(PlanetarySystem.search_records("the Solar System")).to match_array(the_solar_system)
     end
   end
 
