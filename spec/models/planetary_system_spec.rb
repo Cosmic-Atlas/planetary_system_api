@@ -19,7 +19,7 @@ RSpec.describe PlanetarySystem do
       expect(the_solar_system.name).to eq("The Solar System")
       expect(the_solar_system.light_years_from_earth).to eq(0)
       expect(the_solar_system.star_age).to eq(4_600_000_000)
-      require 'pry'; binding.pry
+
       # expect(solar_system.metal_rich_star).to eq(true)
     end
   end
