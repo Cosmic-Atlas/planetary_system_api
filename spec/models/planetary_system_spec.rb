@@ -101,9 +101,9 @@ RSpec.describe PlanetarySystem do
 
   describe "capitalization callback" do 
     it "capitalizes the planetary system name if entered lowercased" do 
-      the_solar_system = PlanetarySystem.create!(name: "solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+      the_solar_system = PlanetarySystem.create!(name: "the Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
 
-      expect(the_solar_system.name).to eq( "Solar System")
+      expect(the_solar_system.name).to eq( "The Solar System")
     end
   end
 end
