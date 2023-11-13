@@ -86,9 +86,9 @@ RSpec.describe PlanetarySystem do
       expect(PlanetarySystem.search_records(nil)).to match_array(PlanetarySystem.all)
     end
 
-    it "returns all theplanets if no records is found" do 
-      the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
-      kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000)
+    it "returns all the planets if no records is found" do 
+      # the_solar_system = PlanetarySystem.create!(name: "Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
+      # kepler_11_system = PlanetarySystem.create!(name: "Kepler-11", light_years_from_earth: 2108, star_age: 3_200_000_000)
 
       expect(PlanetarySystem.search_records("Cats")).to match_array(PlanetarySystem.all)
     end
