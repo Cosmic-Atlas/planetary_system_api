@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe Planet do 
+
+   #let!(:solar_system) {PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, created_at: Time.now)}
+
+   
    before(:each) do 
     @solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
   
