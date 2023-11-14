@@ -76,7 +76,7 @@ RSpec.describe Planet do
     end
 
     it "can search if entered lowercase" do 
-      expect(Planet.filter_planet_type("terrestrial")).to eq([@mars])
+      expect(Planet.filter_planet_type("terrestrial")).to eq([@mars]) #mercury
     end
   end
 
