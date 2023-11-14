@@ -71,7 +71,8 @@ RSpec.describe Planet do
     it "collects all planets by their type" do 
       expect(Planet.filter_planet_type("Gas Giant")).to match_array([@saturn, @jupiter])
       expect(Planet.filter_planet_type("Dwarf")).to eq([@pluto])
-      expect(Planet.filter_planet_type("Terrestrial")).to eq([@mars])
+      expect(Planet.filter_planet_type("Terrestrial")).to eq([@mars]) # mercury
+      #add ice giant neptune test
     end
 
     it "can search if entered lowercase" do 
