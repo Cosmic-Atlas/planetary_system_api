@@ -35,14 +35,14 @@ RSpec.describe Planet do
     it {should belong_to :planetary_system}
   end
 
-  xdescribe 'validations' do 
+  describe 'validations' do 
     it 'should be valid' do 
-      mars_ish = Planet.create(name: nil, planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
-      mars_no_type = Planet.create(name: "Mars", planet_type: nil, year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
-      mars_no_year = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: nil, confirmed: true, planetary_system_id: @solar_system.id)
-      mars_no_confirm = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: nil, planetary_system_id: @solar_system.id)
+      mars_ish = Planet.create(name: nil, planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)
+      mars_no_type = Planet.create(name: "Mars", planet_type: nil, year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)
+      mars_no_year = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: nil, confirmed: true, planetary_system_id: solar_system.id)
+      mars_no_confirm = Planet.create(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: nil, planetary_system_id: solar_system.id)
 
-      expect(@mars).to be_valid 
+      expect(mars).to be_valid 
       expect(mars_ish).to_not be_valid
       expect(mars_no_type).to_not be_valid
       expect(mars_no_year).to_not be_valid
@@ -51,7 +51,7 @@ RSpec.describe Planet do
     end
 
     it "should save the planet name capitalized if entered with a lowercase" do 
-      expect(@mars.name).to eq("Mars")
+      expect(mars.name).to eq("Mars")
     end
   end
 
