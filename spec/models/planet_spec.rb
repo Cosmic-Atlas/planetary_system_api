@@ -57,7 +57,7 @@ RSpec.describe Planet do
 
   describe '#confirmed_planets' do 
     it 'only shows true records' do 
-      expect(Planet.confirmed_planets).to eq([@mars, @saturn, @jupiter]) #neptune and mercury
+      expect(Planet.confirmed_planets).to eq([neptune, mercury, mars, saturn, jupiter]) #neptune and mercury
     end
   end
 
