@@ -67,16 +67,16 @@ RSpec.describe Planet do
     end
   end
 
-  xdescribe "#filter_planet_type" do 
+  describe "#filter_planet_type" do 
     it "collects all planets by their type" do 
-      expect(Planet.filter_planet_type("Gas Giant")).to match_array([@saturn, @jupiter])
-      expect(Planet.filter_planet_type("Dwarf")).to eq([@pluto])
-      expect(Planet.filter_planet_type("Terrestrial")).to eq([@mars]) # mercury
+      expect(Planet.filter_planet_type("Gas Giant")).to match_array([saturn, jupiter])
+      expect(Planet.filter_planet_type("Dwarf")).to eq([pluto])
+      expect(Planet.filter_planet_type("Terrestrial")).to eq([mercury, mars]) # mercury
       #add ice giant neptune test
     end
 
     it "can search if entered lowercase" do 
-      expect(Planet.filter_planet_type("terrestrial")).to eq([@mars]) #mercury
+      expect(Planet.filter_planet_type("terrestrial")).to eq([mercury, mars]) #mercury
     end
   end
 
