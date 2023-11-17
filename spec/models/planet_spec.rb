@@ -11,15 +11,6 @@ RSpec.describe Planet do
   let!(:saturn) {Planet.create(name: "Saturn", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)}
   let!(:jupiter) {Planet.create(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: solar_system.id)}
 
-  # before(:each) do 
-  #   @solar_system = PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
-  
-  #   @mars = Planet.create!(name: "Mars", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
-  #   @pluto = Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: @solar_system.id)
-  #   @saturn = Planet.create(name: "Saturn", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
-  #   @jupiter = Planet.create(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: @solar_system.id)
-  # end
-
   describe '#attributes' do 
     it 'has a name, type, year discovered and confirmed' do 
       expect(mars.name).to eq("Mars")
@@ -82,9 +73,6 @@ RSpec.describe Planet do
 
   describe '::search_planet_records' do 
     it 'searched the planets by exact name' do 
-      # the_solar_system = PlanetarySystem.create(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
-      # neptune = Planet.create(name: "Neptune", planet_type: "Ice Giant", year_discovered: 1846, confirmed: true, planetary_system_id: the_solar_system.id)
-      # mercury = Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)  
 
       expect(Planet.search_planet_records("Neptune")).to match_array([neptune])
       expect(Planet.search_planet_records("Neptnot")).to match_array(Planet.all)
