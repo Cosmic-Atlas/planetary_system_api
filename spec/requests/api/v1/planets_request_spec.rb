@@ -148,6 +148,7 @@ describe "Planet Requests" do
   end
 
   # *~* INVALID REQUESTS *~*
+  
   describe "errors" do 
     before(:each) do 
       @planetary_system = create(:planetary_system)
