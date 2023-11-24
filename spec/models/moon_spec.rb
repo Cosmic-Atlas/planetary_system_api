@@ -13,4 +13,8 @@ RSpec.describe Moon do
       expect(luna.magnitude).to eq(-12.74)
     end
   end
+
+  describe "associations" do 
+    it {should belong_to :planet}
+  end
 end
