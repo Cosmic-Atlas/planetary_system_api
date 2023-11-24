@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_30_003014) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_24_180226) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "moons", force: :cascade do |t|
+    t.string "name"
+    t.bigint "radius_km"
+    t.integer "rotational_period"
+    t.float "magnitude"
+    t.bigint "planet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["planet_id"], name: "index_moons_on_planet_id"
+  end
 
   create_table "planetary_systems", force: :cascade do |t|
     t.string "name"
@@ -33,5 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_003014) do
     t.index ["planetary_system_id"], name: "index_planets_on_planetary_system_id"
   end
 
+  add_foreign_key "moons", "planets"
   add_foreign_key "planets", "planetary_systems"
 end
