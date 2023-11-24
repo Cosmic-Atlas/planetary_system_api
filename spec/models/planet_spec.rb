@@ -24,6 +24,7 @@ RSpec.describe Planet do
 
   describe 'associations' do 
     it {should belong_to :planetary_system}
+    it {should have_many :moons}
   end
 
   describe 'validations' do 
