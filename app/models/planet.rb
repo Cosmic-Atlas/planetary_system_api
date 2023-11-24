@@ -1,5 +1,6 @@
 class Planet < ApplicationRecord 
   belongs_to :planetary_system
+  has_many :moons
   validates_presence_of :name, :planet_type, :year_discovered
   validates :confirmed, inclusion: [true, false]
 
