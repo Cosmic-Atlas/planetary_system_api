@@ -23,6 +23,7 @@ RSpec.describe PlanetarySystem do
 
   describe 'relationship' do 
     it {should have_many :planets}
+    it {should have_many(:moons).through(:planets)}
   end
 
   describe '::order_by_created_at' do 
