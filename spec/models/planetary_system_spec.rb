@@ -10,6 +10,8 @@ RSpec.describe PlanetarySystem do
   let!(:pluto) {Planet.create(name: "Pluto", planet_type: "Dwarf", year_discovered: 1930, confirmed: false, planetary_system_id: the_solar_system.id)}
   let!(:mercury) {Planet.create(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)}
 
+  let!(:a_moon) {Moon.create!(name: "A Moon", radius_km: 1737, rotational_period: 27, magnitude: -12.74, planet_id: mercury.id)}
+
    describe '#attributes/columns' do 
     it 'has a name, light years from earth, star age and metal rich star attributes' do
 
@@ -23,6 +25,7 @@ RSpec.describe PlanetarySystem do
 
   describe 'relationship' do 
     it {should have_many :planets}
+    it {should have_many(:moons).through(:planets)}
   end
 
   describe '::order_by_created_at' do 
@@ -68,6 +71,13 @@ RSpec.describe PlanetarySystem do
       the_solar_system = PlanetarySystem.create!(name: "the Solar System", light_years_from_earth: 0, star_age: 4_600_000_000)
 
       expect(the_solar_system.name).to eq( "The Solar System")
+    end
+  end
+
+  describe "Planetary Systems moons" do 
+    it "can have moons through planets" do 
+      expect(the_solar_system.moons.count).to eq(1)
+      expect(the_solar_system.moons[0].name).to eq("A Moon")
     end
   end
 end

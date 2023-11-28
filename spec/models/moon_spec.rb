@@ -16,6 +16,5 @@ RSpec.describe Moon do
 
   describe "associations" do 
     it {should belong_to :planet}
-    # it should belong to a solar system through planets
   end
 end

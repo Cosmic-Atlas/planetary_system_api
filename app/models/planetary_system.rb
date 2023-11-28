@@ -1,5 +1,6 @@
 class PlanetarySystem < ApplicationRecord
   has_many :planets, dependent: :destroy
+  has_many :moons, through: :planets
 
   validates_presence_of :name, :light_years_from_earth, :star_age
   # validates :metal_rich_star, inclusion: [true, false]
