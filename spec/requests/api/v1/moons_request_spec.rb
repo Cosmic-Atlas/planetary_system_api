@@ -14,5 +14,11 @@ describe "Moons Requests" do
       @moon_3 = create(:moon, planet_id: @planet_2.id)
       @moon_4 - create(:moon, planet_id: @planet_3.id)
     end
+
+    it "gets a list of moons" do 
+      get "/api/v1/moons"
+
+      expect(response).to be_successful
+    end
   end
 end
