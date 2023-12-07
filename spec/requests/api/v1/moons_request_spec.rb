@@ -19,6 +19,7 @@ describe "Moons Requests" do
       get "/api/v1/moons"
 
       expect(response).to be_successful
+      # expect(response.status).to eq(200)
     end
   end
 end
