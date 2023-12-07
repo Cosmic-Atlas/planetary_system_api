@@ -12,7 +12,7 @@ describe "Moons Requests" do
       @moon_1 = create(:moon, planet_id: @planet_1.id)
       @moon_2 = create(:moon, planet_id: @planet_1.id)
       @moon_3 = create(:moon, planet_id: @planet_2.id)
-      @moon_4 - create(:moon, planet_id: @planet_3.id)
+      @moon_4 = create(:moon, planet_id: @planet_3.id)
     end
 
     it "gets a list of moons" do 
