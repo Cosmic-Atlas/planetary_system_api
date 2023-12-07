@@ -20,6 +20,7 @@ describe "Moons Requests" do
 
       expect(response).to be_successful
       # expect(response.status).to eq(200)
+      #Add tests to parse JSON and serializer file
     end
   end
 end
