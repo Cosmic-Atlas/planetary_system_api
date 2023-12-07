@@ -14,6 +14,8 @@ Rails.application.routes.draw do
           get :planet_type, :to => "planets#by_planet_type"
         end
       end
+
+      resources :moons, only: [:index]
     end
   end
 end
