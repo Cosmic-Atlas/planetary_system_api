@@ -21,6 +21,20 @@ describe "Moons Requests" do
       expect(response).to be_successful
       # expect(response.status).to eq(200)
       #Add tests to parse JSON and serializer file
+
+      moons = JSON.parse(response.body, symbolize_names: true)
+
+      expect(moons).to have_key(:data)
+      expect(moons[:data].count).to eq(4)
+
+      moons[:data].each do |moon|
+        expect(moon.keys).to match_array([:id, :type, :attributes])
+        expect(moon[:attributes].keys).to match_array([:name, :radius_km, :rotational_period, :magnitude])
+        expect(moon[:attributes][:name]).to be_a(String)
+        expect(moon[:attributes][:radius_km]).to be_an(Integer)
+        expect(moon[:attributes][:rotational_period]).to be_an(Integer)
+        expect(moon[:attributes][:magnitude]).to be_a(Float)
+      end
     end
   end
 end
