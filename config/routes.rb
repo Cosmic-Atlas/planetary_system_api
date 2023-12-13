@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :moons, only: [:index]
+      resources :moons, only: [:index, :show]
     end
   end
 end
