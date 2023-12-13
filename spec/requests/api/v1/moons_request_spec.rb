@@ -45,7 +45,7 @@ describe "Moons Requests" do
       parsed_moon = JSON.parse(response.body, symbolize_names: true)
 
       expect(parsed_moon[:data].keys).to match_array([:id, :type, :attributes])
-      expect(parsed_moon[:data][:attributes.keys]).to match_array([:name, :radius_km, :rotational_period, :magnitude])
+      expect(parsed_moon[:data][:attributes].keys).to match_array([:name, :radius_km, :rotational_period, :magnitude])
     end
   end
 end
