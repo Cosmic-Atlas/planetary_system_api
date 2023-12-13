@@ -36,5 +36,12 @@ describe "Moons Requests" do
         expect(moon[:attributes][:magnitude]).to be_a(Float)
       end
     end
+
+    it "gets one moon" do 
+      get "/api/v1/moons/#{@moon_1.id}"
+
+      expect(response).to be_successful
+      #expect(response.status).to eq(200)
+    end
   end
 end
