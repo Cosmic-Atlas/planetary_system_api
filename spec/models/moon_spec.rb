@@ -23,7 +23,6 @@ RSpec.describe Moon do
       lowercase_moon = Moon.create!(name: "moon", radius_km: 1700, rotational_period: 10, magnitude: 10.00, planet_id: earth.id)
 
       expect(lowercase_moon.name).to eq("Moon")
-      
     end
   end
 end
