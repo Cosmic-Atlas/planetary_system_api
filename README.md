@@ -1,5 +1,22 @@
 # Planetary System API
 
+<!-- Opening -->
+<br />
+<div align="center">
+  <a href="https://github.com/Cosmic-Atlas/planetary_system_api">
+    <img src=".github/planetary_system_api.png" alt="Logo" width="150" height="150">
+  </a>
+
+<h3 align="center">Planetary System API</h3>
+  <p align="center">
+    In development.
+    <hr>
+    A place to learn about planetary systems.
+  </p>
+</div>
+<hr>
+<br>
+
 
 <!-- TABLE OF CONTENTS -->
 <details>
