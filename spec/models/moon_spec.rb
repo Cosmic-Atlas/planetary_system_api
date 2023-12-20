@@ -6,7 +6,11 @@ RSpec.describe Moon do
   let!(:luna) {Moon.create!(name: "Luna", radius_km: 1737, rotational_period: 27, magnitude: -12.74, planet_id: earth.id)}
 
   let!(:jupiter) {Planet.create!(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)}
-  let!(:luna) {Moon.create!(name: "Luna", radius_km: 1737, rotational_period: 27, magnitude: -12.74, planet_id: earth.id)}
+  let!(:europa) {Moon.create!(name: "Europa", radius_km: 1561, rotational_period: 3, magnitude: 5.29, planet_id: jupiter.id)} #rotational period 3.5
+  let!(:io) {Moon.create!(name: "Io", radius_km: 1821.3, rotational_period: 1, magnitude: 5.02, planet_id: jupiter.id)} #rotational period 1.7
+  let!(:ganymede) {Moon.create!(name: "Ganymede", radius_km: 2631, rotational_period: 7, magnitude: 4.61, planet_id: jupiter.id)}
+  
+
 
   describe "attribues" do 
     it "has attributes" do 
