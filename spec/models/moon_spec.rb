@@ -5,6 +5,13 @@ RSpec.describe Moon do
   let!(:earth) {Planet.create(name: "Earth", planet_type: "Terrestrial", year_discovered: 0, confirmed: true, planetary_system_id: the_solar_system.id)}
   let!(:luna) {Moon.create!(name: "Luna", radius_km: 1737, rotational_period: 27, magnitude: -12.74, planet_id: earth.id)}
 
+  let!(:jupiter) {Planet.create!(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)}
+  let!(:europa) {Moon.create!(name: "Europa", radius_km: 1561, rotational_period: 3, magnitude: 5.29, planet_id: jupiter.id)} #rotational period 3.5
+  let!(:io) {Moon.create!(name: "Io", radius_km: 1821.3, rotational_period: 1, magnitude: 5.02, planet_id: jupiter.id)} #rotational period 1.7
+  let!(:ganymede) {Moon.create!(name: "Ganymede", radius_km: 2631, rotational_period: 7, magnitude: 4.61, planet_id: jupiter.id)}
+  #change rotational period to float in db
+
+
   describe "attribues" do 
     it "has attributes" do 
       expect(luna.name).to eq("Luna")
@@ -23,6 +30,13 @@ RSpec.describe Moon do
       lowercase_moon = Moon.create!(name: "moon", radius_km: 1700, rotational_period: 10, magnitude: 10.00, planet_id: earth.id)
 
       expect(lowercase_moon.name).to eq("Moon")
+    end
+  end
+
+  describe "moons_by_planet" do 
+    it "gets all the moons by a specific planet" do 
+      expect(Moon.moons_by_planet("Jupiter")).to match_array([europa, io, ganymede])
+      expect(Moon.moons_by_planet("Earth")).to match_array([luna])
     end
   end
 end

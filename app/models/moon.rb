@@ -7,4 +7,8 @@ class Moon < ApplicationRecord
     self.name = name.split.map(&:capitalize).join(" ")
   end
 
+  def self.moons_by_planet(planet_name)
+    Moon.joins(:planet).where(planet: {name: planet_name})
+  end
+
 end
