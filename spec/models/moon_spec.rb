@@ -35,7 +35,7 @@ RSpec.describe Moon do
 
   describe "moons_by_planet" do 
     it "gets all the moons by a specific planet" do 
-      expect(Moon.planets_by_moon("Jupiter")).to eq([europa, io, ganymede])
+      expect(Moon.moons_by_planet("Jupiter")).to eq([europa, io, ganymede])
     end
   end
 end
