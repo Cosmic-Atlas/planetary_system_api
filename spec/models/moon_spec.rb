@@ -9,7 +9,7 @@ RSpec.describe Moon do
   let!(:europa) {Moon.create!(name: "Europa", radius_km: 1561, rotational_period: 3, magnitude: 5.29, planet_id: jupiter.id)} #rotational period 3.5
   let!(:io) {Moon.create!(name: "Io", radius_km: 1821.3, rotational_period: 1, magnitude: 5.02, planet_id: jupiter.id)} #rotational period 1.7
   let!(:ganymede) {Moon.create!(name: "Ganymede", radius_km: 2631, rotational_period: 7, magnitude: 4.61, planet_id: jupiter.id)}
-  
+  #change rotational period to float in db
 
 
   describe "attribues" do 
