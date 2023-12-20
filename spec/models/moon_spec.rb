@@ -5,6 +5,9 @@ RSpec.describe Moon do
   let!(:earth) {Planet.create(name: "Earth", planet_type: "Terrestrial", year_discovered: 0, confirmed: true, planetary_system_id: the_solar_system.id)}
   let!(:luna) {Moon.create!(name: "Luna", radius_km: 1737, rotational_period: 27, magnitude: -12.74, planet_id: earth.id)}
 
+  let!(:jupiter) {Planet.create!(name: "Jupiter", planet_type: "Gas Giant", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)}
+  let!(:luna) {Moon.create!(name: "Luna", radius_km: 1737, rotational_period: 27, magnitude: -12.74, planet_id: earth.id)}
+
   describe "attribues" do 
     it "has attributes" do 
       expect(luna.name).to eq("Luna")
