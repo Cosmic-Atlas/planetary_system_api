@@ -51,5 +51,9 @@ RSpec.describe Moon do
     it "returns an empty array for a planet name not in the database" do 
       expect(Moon.moons_by_planet("No Planet")).to match_array([])
     end
+
+    it "returns an empty array when an empty string is passed" do 
+      expect(Moon.moons_by_planet("")).to match_array([])
+    end
   end
 end
