@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe Moon do 
   let!(:the_solar_system) {PlanetarySystem.create!(name: "The Solar System", light_years_from_earth: 0, star_age: 4_600_000_000, created_at: Time.now)}
+
   let!(:earth) {Planet.create(name: "Earth", planet_type: "Terrestrial", year_discovered: 0, confirmed: true, planetary_system_id: the_solar_system.id)}
   let!(:luna) {Moon.create!(name: "Luna", radius_km: 1737, rotational_period: 27, magnitude: -12.74, planet_id: earth.id)}
 
@@ -10,8 +11,8 @@ RSpec.describe Moon do
   let!(:io) {Moon.create!(name: "Io", radius_km: 1821.3, rotational_period: 1, magnitude: 5.02, planet_id: jupiter.id)} #rotational period 1.7
   let!(:ganymede) {Moon.create!(name: "Ganymede", radius_km: 2631, rotational_period: 7, magnitude: 4.61, planet_id: jupiter.id)}
 
-    let!(:mercury) {Planet.create!(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)}
-    let!(:venus) {Planet.create!(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)}
+  let!(:mercury) {Planet.create!(name: "Mercury", planet_type: "Terrestrial", year_discovered: 1631, confirmed: true, planetary_system_id: the_solar_system.id)}
+  let!(:venus) {Planet.create!(name: "Venus", planet_type: "Terrestrial", year_discovered: 1610, confirmed: true, planetary_system_id: the_solar_system.id)}
   #change rotational period to float in db
 
 
@@ -40,6 +41,11 @@ RSpec.describe Moon do
     it "gets all the moons by a specific planet" do 
       expect(Moon.moons_by_planet("Jupiter")).to match_array([europa, io, ganymede])
       expect(Moon.moons_by_planet("Earth")).to match_array([luna])
+    end
+
+    it "returns an empty array for planets without moons" do 
+      expect(Moon.moons_by_planet("Mercury")).to match_array([])
+      expect(Moon.moons_by_planet("Venus")).to match_array([])
     end
   end
 end
