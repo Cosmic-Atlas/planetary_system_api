@@ -56,7 +56,11 @@ describe "Moons Requests" do
                         magnitude: 1.03
       })
 
-      headers
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post "/api/v1/planets", headers: headers, params: JSON.generate(moon: moon_params)
+
+      created_moon = Moon.last
     end
   end
 end
