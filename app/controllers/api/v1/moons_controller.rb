@@ -8,6 +8,11 @@ class Api::V1::MoonsController < ApplicationController
   end
 
   def create 
-    
+
   end
+
+  private 
+    def moon_params 
+      params.require(:moon).permit(:name, :radius_km, :rotational_period, :magnitude, :planet_id)
+    end
 end
