@@ -47,5 +47,9 @@ describe "Moons Requests" do
       expect(parsed_moon[:data].keys).to match_array([:id, :type, :attributes])
       expect(parsed_moon[:data][:attributes].keys).to match_array([:name, :radius_km, :rotational_period, :magnitude])
     end
+
+    it "creates a moon" do 
+      
+    end
   end
 end
