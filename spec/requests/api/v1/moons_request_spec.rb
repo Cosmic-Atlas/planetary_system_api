@@ -49,7 +49,14 @@ describe "Moons Requests" do
     end
 
     it "creates a moon" do 
-      
+      moon_params = ({
+                        name: "Cool Moon",
+                        radius_km: 1234, 
+                        rotational_period: 15, # ** may change to float **
+                        magnitude: 1.03
+      })
+
+      headers
     end
   end
 end
