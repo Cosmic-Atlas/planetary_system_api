@@ -61,6 +61,9 @@ describe "Moons Requests" do
       post "/api/v1/planets", headers: headers, params: JSON.generate(moon: moon_params)
 
       created_moon = Moon.last
+
+      expect(response).to be_successful
+      # expect(response.status).to eq(201)
     end
   end
 end
