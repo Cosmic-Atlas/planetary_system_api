@@ -53,17 +53,22 @@ describe "Moons Requests" do
                         name: "Cool Moon",
                         radius_km: 1234, 
                         rotational_period: 15, # ** may change to float **
-                        magnitude: 1.03
+                        magnitude: 1.03,
+                        planet_id: @planet_1.id
       })
 
       headers = {"CONTENT_TYPE" => "application/json"}
 
-      post "/api/v1/planets", headers: headers, params: JSON.generate(moon: moon_params)
+      post "/api/v1/moons", headers: headers, params: JSON.generate(moon: moon_params)
 
       created_moon = Moon.last
 
       expect(response).to be_successful
       # expect(response.status).to eq(201)
+      # expect(created_moon.name).to eq(moon_params[:name])
+      # expect(created_moon.radius_km).to eq(moon_params[:radius_km])
+      # expect(created_moon.rotational_period).to eq(moon_params[:rotational_period])
+      # expect(created_moon.magnitude).to eq(moon_params[:magnitude])
     end
   end
 end
