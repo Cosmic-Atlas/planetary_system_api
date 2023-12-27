@@ -4,7 +4,7 @@ class Api::V1::MoonsController < ApplicationController
   end
 
   def show 
-    render json: V1::MoonSerializer.new(Moon.find(params[:id]))
+    render json: V1::MoonSerializer.new(Moon.find(params[:id])), status: 200
   end
 
   def create 
