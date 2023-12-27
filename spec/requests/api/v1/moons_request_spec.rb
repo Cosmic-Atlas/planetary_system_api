@@ -63,7 +63,7 @@ describe "Moons Requests" do
       created_moon = Moon.last
 
       expect(response).to be_successful
-      # expect(response.status).to eq(201)
+      expect(response.status).to eq(201)
       expect(created_moon.name).to eq(moon_params[:name])
       expect(created_moon.radius_km).to eq(moon_params[:radius_km])
       expect(created_moon.rotational_period).to eq(moon_params[:rotational_period])
