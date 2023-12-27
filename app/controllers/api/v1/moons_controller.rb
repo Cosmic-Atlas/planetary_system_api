@@ -8,7 +8,7 @@ class Api::V1::MoonsController < ApplicationController
   end
 
   def create 
-    render json: V1::MoonSerializer.new(Moon.create!(moon_params))
+    render json: V1::MoonSerializer.new(Moon.create!(moon_params)), status: 201
   end
 
   private 
