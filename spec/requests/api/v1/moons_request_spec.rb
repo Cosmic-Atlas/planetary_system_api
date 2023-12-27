@@ -19,8 +19,7 @@ describe "Moons Requests" do
       get "/api/v1/moons"
 
       expect(response).to be_successful
-      # expect(response.status).to eq(200)
-      #Add tests to parse JSON and serializer file
+      expect(response.status).to eq(200)
 
       moons = JSON.parse(response.body, symbolize_names: true)
 
@@ -41,7 +40,7 @@ describe "Moons Requests" do
       get "/api/v1/moons/#{@moon_1.id}"
 
       expect(response).to be_successful
-      #expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
       parsed_moon = JSON.parse(response.body, symbolize_names: true)
 
       expect(parsed_moon[:data].keys).to match_array([:id, :type, :attributes])
@@ -64,7 +63,7 @@ describe "Moons Requests" do
       created_moon = Moon.last
 
       expect(response).to be_successful
-      # expect(response.status).to eq(201)
+      expect(response.status).to eq(201)
       expect(created_moon.name).to eq(moon_params[:name])
       expect(created_moon.radius_km).to eq(moon_params[:radius_km])
       expect(created_moon.rotational_period).to eq(moon_params[:rotational_period])

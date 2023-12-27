@@ -1,14 +1,14 @@
 class Api::V1::MoonsController < ApplicationController 
   def index 
-    render json: V1::MoonSerializer.new(Moon.all)
+    render json: V1::MoonSerializer.new(Moon.all), status: 200
   end
 
   def show 
-    render json: V1::MoonSerializer.new(Moon.find(params[:id]))
+    render json: V1::MoonSerializer.new(Moon.find(params[:id])), status: 200
   end
 
   def create 
-    render json: V1::MoonSerializer.new(Moon.create!(moon_params))
+    render json: V1::MoonSerializer.new(Moon.create!(moon_params)), status: 201
   end
 
   private 
