@@ -19,8 +19,7 @@ describe "Moons Requests" do
       get "/api/v1/moons"
 
       expect(response).to be_successful
-      # expect(response.status).to eq(200)
-      #Add tests to parse JSON and serializer file
+      expect(response.status).to eq(200)
 
       moons = JSON.parse(response.body, symbolize_names: true)
 
