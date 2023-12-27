@@ -40,7 +40,7 @@ describe "Moons Requests" do
       get "/api/v1/moons/#{@moon_1.id}"
 
       expect(response).to be_successful
-      #expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
       parsed_moon = JSON.parse(response.body, symbolize_names: true)
 
       expect(parsed_moon[:data].keys).to match_array([:id, :type, :attributes])
