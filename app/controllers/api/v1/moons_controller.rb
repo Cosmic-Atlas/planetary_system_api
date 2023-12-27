@@ -1,6 +1,6 @@
 class Api::V1::MoonsController < ApplicationController 
   def index 
-    render json: V1::MoonSerializer.new(Moon.all)
+    render json: V1::MoonSerializer.new(Moon.all), status: 200
   end
 
   def show 
