@@ -59,7 +59,7 @@ RSpec.describe Moon do
 
   describe "moons_by_system" do 
     it "gets all moons by a specific solar system" do 
-      
+      expect(Moon.moons_by_system("The Solar System")).to match_array([luna, eropa, io, ganymede])
     end
   end
 end
