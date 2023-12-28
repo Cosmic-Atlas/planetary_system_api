@@ -11,4 +11,7 @@ class Moon < ApplicationRecord
     Moon.joins(:planet).where(planet: {name: planet_name})
   end
 
+  def self.moons_by_system(system_name)
+    Moon.joins(planet: :planetary_system).where(planetary_system: {name: system_name})
+  end
 end
