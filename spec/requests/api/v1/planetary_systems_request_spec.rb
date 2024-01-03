@@ -9,7 +9,7 @@ describe "Planetary Systems Requests" do
     end
 
     it "sends a list of planetary systems" do 
-      # create_list(:planetary_system, 3)
+
 
       get "/api/v1/planetary_systems"
 
@@ -31,7 +31,6 @@ describe "Planetary Systems Requests" do
     end
 
     it "gets one planetary system information" do 
-      # planetary_system = create(:planetary_system)
 
       get "/api/v1/planetary_systems/#{@planetary_system_1.id}"
 
