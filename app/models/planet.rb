@@ -22,8 +22,4 @@ class Planet < ApplicationRecord
       Planet.all
     end
   end
-
-  # def self.filter_planet_type(input)
-  #   where(planet_type: input)
-  # end
 end
