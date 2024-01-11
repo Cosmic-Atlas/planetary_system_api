@@ -51,7 +51,7 @@ describe "Moons Requests" do
       moon_params = ({
                         name: "Cool Moon",
                         radius_km: 1234, 
-                        rotational_period: 15, # ** may change to float **
+                        rotational_period: 15.0, 
                         magnitude: 1.03,
                         planet_id: @planet_1.id
       })
