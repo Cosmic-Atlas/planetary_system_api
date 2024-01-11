@@ -31,7 +31,7 @@ describe "Moons Requests" do
         expect(moon[:attributes].keys).to match_array([:name, :radius_km, :rotational_period, :magnitude])
         expect(moon[:attributes][:name]).to be_a(String)
         expect(moon[:attributes][:radius_km]).to be_an(Integer)
-        expect(moon[:attributes][:rotational_period]).to be_an(Integer)
+        expect(moon[:attributes][:rotational_period]).to be_a(Float)
         expect(moon[:attributes][:magnitude]).to be_a(Float)
       end
     end
