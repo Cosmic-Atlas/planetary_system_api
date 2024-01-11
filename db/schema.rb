@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_24_180226) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_11_162254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "moons", force: :cascade do |t|
     t.string "name"
     t.bigint "radius_km"
-    t.integer "rotational_period"
+    t.float "rotational_period"
     t.float "magnitude"
     t.bigint "planet_id", null: false
     t.datetime "created_at", null: false
