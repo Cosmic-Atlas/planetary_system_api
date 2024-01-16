@@ -85,6 +85,7 @@ describe "Moons Requests" do
       @moon_1 = create(:moon, planet_id: @planet_1.id)
       @moon_2 = create(:moon, planet_id: @planet_1.id)
       @moon_3 = create(:moon, planet_id: @planet_2.id)
+      
     end
   end
 end
