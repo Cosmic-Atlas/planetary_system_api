@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Moons Requests" do 
+
+  # *~* VALID REQUESTS *~*
   describe "Requests" do 
     before(:each) do 
       @planetary_system = create(:planetary_system)
@@ -68,6 +70,21 @@ describe "Moons Requests" do
       expect(created_moon.radius_km).to eq(moon_params[:radius_km])
       expect(created_moon.rotational_period).to eq(moon_params[:rotational_period])
       expect(created_moon.magnitude).to eq(moon_params[:magnitude])
+    end
+  end
+
+  # *~* INVALID REQUESTS *~*
+
+  describe "errors" do 
+    before(:each) do 
+      @planetary_system = create(:planetary_system)
+
+      @planet_1 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      @planet_2 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+
+      @moon_1 = create(:moon, planet_id: @planet_1.id)
+      @moon_2 = create(:moon, planet_id: @planet_1.id)
+      @moon_3 = create(:moon, planet_id: @planet_2.id)
     end
   end
 end
