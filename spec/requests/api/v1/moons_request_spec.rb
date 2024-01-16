@@ -85,7 +85,17 @@ describe "Moons Requests" do
       @moon_1 = create(:moon, planet_id: @planet_1.id)
       @moon_2 = create(:moon, planet_id: @planet_1.id)
       @moon_3 = create(:moon, planet_id: @planet_2.id)
-      
+
     end
+
+    it "returns an error when id does not exist for a moon" do 
+
+    end
+
+    it "returns an error when a letter is provided for id" do 
+
+    end
+
+    it "returing an error when creating of required value is not provided"
   end
 end
