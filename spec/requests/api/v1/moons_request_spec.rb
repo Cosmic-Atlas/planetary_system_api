@@ -89,7 +89,10 @@ describe "Moons Requests" do
     end
 
     it "returns an error when id does not exist for a moon" do 
+      get "/api/v1/moons/4567"
 
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
     end
 
     it "returns an error when a letter is provided for id" do 
