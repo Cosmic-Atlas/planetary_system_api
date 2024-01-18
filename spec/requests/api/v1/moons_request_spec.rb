@@ -105,6 +105,10 @@ describe "Moons Requests" do
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
 
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["Couldn't find Moon with 'id'=h"])
+
     end
 
     it "returing an error when creating of required value is not provided"
