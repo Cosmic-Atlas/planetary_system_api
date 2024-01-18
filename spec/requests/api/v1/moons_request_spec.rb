@@ -100,6 +100,10 @@ describe "Moons Requests" do
     end
 
     it "returns an error when a letter is provided for id" do 
+      get "/api/v1/moons/h"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
 
     end
 
