@@ -93,6 +93,10 @@ describe "Moons Requests" do
 
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["Couldn't find Moon with 'id'=4567"])
     end
 
     it "returns an error when a letter is provided for id" do 
