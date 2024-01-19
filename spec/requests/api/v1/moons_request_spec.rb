@@ -111,6 +111,18 @@ describe "Moons Requests" do
 
     end
 
-    it "returing an error when creating of required value is not provided"
+    it "returing an error when creating of required value is not provided" do 
+      moon_params = ({
+                        name: "Cool Moon",
+                        #radius_km: 1234, no radius provided
+                        rotational_period: 15.0, 
+                        magnitude: 1.03,
+                        planet_id: @planet_1.id
+      })
+
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post "/api/v1/moons", headers: headers, params: JSON.generate(moon: moon_params)
+    end
   end
 end
