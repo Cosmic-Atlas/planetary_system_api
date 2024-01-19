@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Moons Requests" do 
+
+  # *~* VALID REQUESTS *~*
   describe "Requests" do 
     before(:each) do 
       @planetary_system = create(:planetary_system)
@@ -68,6 +70,67 @@ describe "Moons Requests" do
       expect(created_moon.radius_km).to eq(moon_params[:radius_km])
       expect(created_moon.rotational_period).to eq(moon_params[:rotational_period])
       expect(created_moon.magnitude).to eq(moon_params[:magnitude])
+    end
+  end
+
+  # *~* INVALID REQUESTS *~*
+
+  describe "errors" do 
+    before(:each) do 
+      @planetary_system = create(:planetary_system)
+
+      @planet_1 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      @planet_2 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+
+      @moon_1 = create(:moon, planet_id: @planet_1.id)
+      @moon_2 = create(:moon, planet_id: @planet_1.id)
+      @moon_3 = create(:moon, planet_id: @planet_2.id)
+
+    end
+
+    it "returns an error when id does not exist for a moon" do 
+      get "/api/v1/moons/4567"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["Couldn't find Moon with 'id'=4567"])
+    end
+
+    it "returns an error when a letter is provided for id" do 
+      get "/api/v1/moons/h"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["Couldn't find Moon with 'id'=h"])
+
+    end
+
+    it "returing an error when creating of required value is not provided" do 
+      moon_params = ({
+                        name: "Cool Moon",
+                        #radius_km: 1234, no radius provided
+                        rotational_period: 15.0, 
+                        magnitude: 1.03,
+                        planet_id: @planet_1.id
+      })
+
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post "/api/v1/moons", headers: headers, params: JSON.generate(moon: moon_params)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(error[:errors]).to eq(["Validation failed: Radius km can't be blank"])
+      expect(Moon.count).to eq(3)
     end
   end
 end
