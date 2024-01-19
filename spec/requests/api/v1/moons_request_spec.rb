@@ -130,7 +130,7 @@ describe "Moons Requests" do
       error = JSON.parse(response.body, symbolize_names: true)
 
       expect(error[:errors]).to eq(["Validation failed: Radius km can't be blank"])
-      # expect(Planet.count).to eq(2)
+      expect(Moon.count).to eq(3)
     end
   end
 end
