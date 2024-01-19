@@ -123,6 +123,9 @@ describe "Moons Requests" do
       headers = {"CONTENT_TYPE" => "application/json"}
 
       post "/api/v1/moons", headers: headers, params: JSON.generate(moon: moon_params)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
     end
   end
 end
