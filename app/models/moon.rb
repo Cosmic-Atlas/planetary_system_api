@@ -9,4 +9,8 @@ class Moon < ApplicationRecord
   def capitalize_moon_name 
     self.name = name.split.map(&:capitalize).join(" ")
   end
+
+  def self.search_moon_records(search)
+
+  end
 end
