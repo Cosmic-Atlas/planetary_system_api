@@ -60,4 +60,12 @@ RSpec.describe Moon do
       expect(Moon.moons_by_system("The Solar System")).to match_array([luna, europa, io, ganymede])
     end
   end
+
+  describe "search_moon_records" do 
+    it "can search for and return a moon by searching its name" do 
+      expect(Moon.search_moon_records("Luna")).to match_array([luna])
+      expect(Moon.search_moon_records("Lunarrr")).to match_array(Moon.all)
+      #add more tests
+    end
+  end
 end
