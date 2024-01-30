@@ -65,6 +65,7 @@ RSpec.describe Moon do
     it "can search for and return a moon by searching its name" do 
       expect(Moon.search_moon_records("Luna")).to match_array([luna])
       expect(Moon.search_moon_records("Lunarrr")).to match_array(Moon.all)
+      expect(Planet.search_moon_records(nil)).to match_array(Moon.all)
       #add more tests
     end
   end
