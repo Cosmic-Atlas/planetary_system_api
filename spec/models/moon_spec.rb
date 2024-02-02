@@ -67,7 +67,7 @@ RSpec.describe Moon do
       expect(Moon.search_moon_records("Lunarrr")).to match_array(Moon.all)
       expect(Moon.search_moon_records(nil)).to match_array(Moon.all)
       expect(Moon.search_moon_records("Europa")).to match_array([europa])
-      # expect(Moon.search_moon_records("europa")).to match_array([europa])
+      expect(Moon.search_moon_records("europa")).to match_array([europa])
       #add more tests
     end
   end
