@@ -14,6 +14,8 @@ class Moon < ApplicationRecord
     if search 
       name_search_key = Moon.find_by(name: search.capitalize)
       name_search_key ? self.where(id: name_search_key) : Moon.all
+    else 
+      Moon.all
     end
   end
 end
