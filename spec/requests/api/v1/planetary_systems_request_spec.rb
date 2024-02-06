@@ -84,6 +84,9 @@ describe "Planetary Systems Requests" do
       get "/api/v1/planetary_systems/search_planetary_systems/#{"earth"}"
 
       expect(response).to be_successful
+      # expect(response.status).to eq(200)
+
+      
     end
   end
 
