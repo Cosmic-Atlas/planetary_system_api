@@ -79,6 +79,12 @@ describe "Planetary Systems Requests" do
       expect(created_system.name).to_not eq(system_params[:name])
       expect(created_system.name).to eq("Super System")
     end
+
+    it "searches for a specific planetary_system" do 
+      get "/api/v1/planetary_systems/search_planetary_systems/#{"earth"}"
+
+      expect(response).to be_successful
+    end
   end
 
    # *~* INVALID REQUESTS *~*
