@@ -94,6 +94,12 @@ describe "Planetary Systems Requests" do
 
       expect(search_results[:data].count).to eq(3)
 
+      search_results_ids = search_results[:data].map do |result| 
+        result[:id].to_i
+      end
+
+      expect(search_results_ids).to match_array([@planetary_system_1.id, @planetary_system_2.id, @planetary_system_3.id])
+
       # require 'pry'; binding.pry
     end
   end
