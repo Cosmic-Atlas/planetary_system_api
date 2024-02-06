@@ -91,6 +91,8 @@ describe "Planetary Systems Requests" do
       expect(search_results).to have_key(:data)
       expect(search_results[:data]).to be_an(Array)
 
+      expect(search_results[:data].count).to eq(3)
+
       # require 'pry'; binding.pry
     end
   end
