@@ -80,8 +80,9 @@ describe "Planetary Systems Requests" do
       expect(created_system.name).to eq("Super System")
     end
 
-    it "searches for a specific planetary_system" do 
-      get "/api/v1/planetary_systems/search_planetary_systems/#{"earth"}"
+    it "searches for a specific planetary_system, no result returns all planets" do 
+      get "/api/v1/planetary_systems/search_planetary_systems/#{"earth"}" 
+      #no earth present, endpoint should return all planets in database
 
       expect(response).to be_successful
       # expect(response.status).to eq(200)
