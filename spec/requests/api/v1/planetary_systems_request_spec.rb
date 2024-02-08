@@ -107,6 +107,7 @@ describe "Planetary Systems Requests" do
       get "/api/v1/planetary_systems/search_planetary_systems?name=#{@planetary_system_1.name}"
       
       #seems to be a 'bad uri' when there is a space in the name
+      #fixed? I think
 
       expect(response).to be_successful
     end
