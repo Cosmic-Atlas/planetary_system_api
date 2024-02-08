@@ -102,7 +102,10 @@ describe "Planetary Systems Requests" do
     end
 
     it "searches for an eisting planetary system, matching result returns that system" do 
-      get "/api/v1/planetary_systems/search_planetary_systems/#{@planetary_system_1.name}"
+      # get "/api/v1/planetary_systems/search_planetary_systems/#{@planetary_system_1.name}"
+
+      get "/api/v1/planetary_systems/search_planetary_systems?name=#{@planetary_system_1.name}"
+      
       #seems to be a 'bad uri' when there is a space in the name
 
       expect(response).to be_successful
