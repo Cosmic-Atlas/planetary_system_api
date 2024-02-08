@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :planetary_systems, only: [:index, :show, :create] do 
         collection do 
-          get "search_planetary_systems/:name", :to => 'planetary_systems#search_planetary_systems'
+          # get "search_planetary_systems/:name", :to => 'planetary_systems#search_planetary_systems'
+          get "search_planetary_systems/", :to => 'planetary_systems#search_planetary_systems'
         end
       end
 
