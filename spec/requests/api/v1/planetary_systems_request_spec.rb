@@ -81,7 +81,7 @@ describe "Planetary Systems Requests" do
     end
 
     it "searches for a planetary_system, no result returns all planets" do 
-      get "/api/v1/planetary_systems/search_planetary_systems/#{"earth"}" 
+      get "/api/v1/planetary_systems/search_planetary_systems?name=#{"earth"}" 
       #no earth present, endpoint should return all planets in database
 
       expect(response).to be_successful
@@ -101,7 +101,7 @@ describe "Planetary Systems Requests" do
       expect(search_results_ids).to match_array([@planetary_system_1.id, @planetary_system_2.id, @planetary_system_3.id])
     end
 
-    it "searches for an eisting planetary system, matching result returns that system" do 
+    it "searches for an existing planetary system, matching result returns that system" do 
       # get "/api/v1/planetary_systems/search_planetary_systems/#{@planetary_system_1.name}"
 
       get "/api/v1/planetary_systems/search_planetary_systems?name=#{@planetary_system_1.name}"
@@ -120,7 +120,6 @@ describe "Planetary Systems Requests" do
       expect(search_results[:data][0]).to be_a(Hash)
       expect(search_results[:data][0][:attributes]).to have_key(:name)
       expect(search_results[:data][0][:attributes][:name]).to eq(@planetary_system_1.name)
-      # require 'pry'; binding.pry
     end
   end
 
