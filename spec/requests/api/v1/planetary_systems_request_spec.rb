@@ -79,6 +79,48 @@ describe "Planetary Systems Requests" do
       expect(created_system.name).to_not eq(system_params[:name])
       expect(created_system.name).to eq("Super System")
     end
+
+    it "searches for a planetary_system, no result returns all planets" do 
+      get "/api/v1/planetary_systems/search_planetary_systems?name=#{"earth"}" 
+      #no earth present, endpoint should return all planets in database
+
+      expect(response).to be_successful
+      # expect(response.status).to eq(200)
+
+      search_results = JSON.parse(response.body, symbolize_names: true)
+
+      expect(search_results).to have_key(:data)
+      expect(search_results[:data]).to be_an(Array)
+
+      expect(search_results[:data].count).to eq(3)
+
+      search_results_ids = search_results[:data].map do |result| 
+        result[:id].to_i
+      end
+
+      expect(search_results_ids).to match_array([@planetary_system_1.id, @planetary_system_2.id, @planetary_system_3.id])
+    end
+
+    it "searches for an existing planetary system, matching result returns that system" do 
+      # get "/api/v1/planetary_systems/search_planetary_systems/#{@planetary_system_1.name}"
+
+      get "/api/v1/planetary_systems/search_planetary_systems?name=#{@planetary_system_1.name}"
+      
+      #seems to be a 'bad uri' when there is a space in the name
+      #fixed? I think
+
+      expect(response).to be_successful
+      # expect(response.status).to eq(200)
+
+      search_results = JSON.parse(response.body, symbolize_names: true)
+
+      expect(search_results).to have_key(:data)
+      expect(search_results[:data]).to be_an(Array)
+      expect(search_results[:data][0]).to have_key(:attributes)
+      expect(search_results[:data][0]).to be_a(Hash)
+      expect(search_results[:data][0][:attributes]).to have_key(:name)
+      expect(search_results[:data][0][:attributes][:name]).to eq(@planetary_system_1.name)
+    end
   end
 
    # *~* INVALID REQUESTS *~*
