@@ -122,6 +122,13 @@ describe "Planetary Systems Requests" do
       expect(search_results[:data][0][:attributes]).to have_key(:name)
       expect(search_results[:data][0][:attributes][:name]).to eq(@planetary_system_1.name)
     end
+
+    it "returns all planets when the searched name is not found" do 
+       get "/api/v1/planetary_systems/search_planetary_systems?name=big ole system"
+       # big ole system doesnt exist so all planets should be returned instead
+
+       expect(response).to be_successful
+    end
   end
 
    # *~* INVALID REQUESTS *~*
