@@ -102,9 +102,9 @@ describe "Planetary Systems Requests" do
     end
 
     it "searches for an existing planetary system, matching result returns that system" do 
-      # get "/api/v1/planetary_systems/search_planetary_systems/#{@planetary_system_1.name}"
-
+  
       get "/api/v1/planetary_systems/search_planetary_systems?name=#{@planetary_system_1.name}"
+      # matching name should return the planetary system
       
       #seems to be a 'bad uri' when there is a space in the name
       #fixed? I think
@@ -116,10 +116,24 @@ describe "Planetary Systems Requests" do
 
       expect(search_results).to have_key(:data)
       expect(search_results[:data]).to be_an(Array)
+      expect(search_results[:data].count).to eq(1)
       expect(search_results[:data][0]).to have_key(:attributes)
       expect(search_results[:data][0]).to be_a(Hash)
       expect(search_results[:data][0][:attributes]).to have_key(:name)
       expect(search_results[:data][0][:attributes][:name]).to eq(@planetary_system_1.name)
+    end
+
+    it "returns all planets when the searched name is not found" do 
+       get "/api/v1/planetary_systems/search_planetary_systems?name=big ole system"
+       # big ole system doesnt exist so all planets should be returned instead
+
+       expect(response).to be_successful
+
+       search_results = JSON.parse(response.body, symbolize_names: true)
+
+       expect(search_results).to have_key(:data)
+       expect(search_results[:data]).to be_an(Array)
+       expect(search_results[:data].count).to eq(3)
     end
   end
 
