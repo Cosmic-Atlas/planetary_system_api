@@ -128,6 +128,12 @@ describe "Planetary Systems Requests" do
        # big ole system doesnt exist so all planets should be returned instead
 
        expect(response).to be_successful
+
+       search_results = JSON.parse(response.body, symbolize_names: true)
+
+       expect(search_results).to have_key(:data)
+       expect(search_results[:data]).to be_an(Array)
+       expect(search_results[:data].count).to eq(3)
     end
   end
 
