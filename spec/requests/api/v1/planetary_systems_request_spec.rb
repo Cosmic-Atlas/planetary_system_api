@@ -85,7 +85,7 @@ describe "Planetary Systems Requests" do
       #no earth present, endpoint should return all planets in database
 
       expect(response).to be_successful
-      # expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
 
       search_results = JSON.parse(response.body, symbolize_names: true)
 
@@ -106,11 +106,8 @@ describe "Planetary Systems Requests" do
       get "/api/v1/planetary_systems/search_planetary_systems?name=#{@planetary_system_1.name}"
       # matching name should return the planetary system
       
-      #seems to be a 'bad uri' when there is a space in the name
-      #fixed? I think
-
       expect(response).to be_successful
-      # expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
 
       search_results = JSON.parse(response.body, symbolize_names: true)
 
@@ -128,6 +125,7 @@ describe "Planetary Systems Requests" do
        # big ole system doesnt exist so all planets should be returned instead
 
        expect(response).to be_successful
+       expect(response.status).to eq(200)
 
        search_results = JSON.parse(response.body, symbolize_names: true)
 

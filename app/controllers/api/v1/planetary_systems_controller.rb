@@ -13,7 +13,7 @@ class Api::V1::PlanetarySystemsController < ApplicationController
 
   def search_planetary_systems 
     # require 'pry'; binding.pry
-    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.search_records(params[:name]))
+    render json: V1::PlanetarySystemSerializer.new(PlanetarySystem.search_records(params[:name])), status: 200
   end
 
   private 
