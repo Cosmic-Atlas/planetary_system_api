@@ -85,7 +85,7 @@ describe "Planetary Systems Requests" do
       #no earth present, endpoint should return all planets in database
 
       expect(response).to be_successful
-      # expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
 
       search_results = JSON.parse(response.body, symbolize_names: true)
 
