@@ -125,6 +125,7 @@ describe "Planetary Systems Requests" do
        # big ole system doesnt exist so all planets should be returned instead
 
        expect(response).to be_successful
+       expect(response.status).to eq(200)
 
        search_results = JSON.parse(response.body, symbolize_names: true)
 
