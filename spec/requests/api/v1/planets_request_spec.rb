@@ -145,6 +145,10 @@ describe "Planet Requests" do
 
       expect(gas_giant_ids).to match_array([@planet_1.id, @planet_2.id])
     end
+
+    it "searches for a planet by name" do 
+      
+    end
   end
 
   # *~* INVALID REQUESTS *~*
