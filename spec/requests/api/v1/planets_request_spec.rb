@@ -147,7 +147,7 @@ describe "Planet Requests" do
     end
 
     it "searches for a planet by name" do 
-      
+      get "/api/v1/planets/search_planets?name=#{@planetary_system_1.name}"
     end
   end
 
