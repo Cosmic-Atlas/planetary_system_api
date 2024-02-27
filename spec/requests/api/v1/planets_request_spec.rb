@@ -148,6 +148,9 @@ describe "Planet Requests" do
 
     it "searches for a planet by name" do 
       get "/api/v1/planets/search_planets?name=#{@planetary_system_1.name}"
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
     end
   end
 
