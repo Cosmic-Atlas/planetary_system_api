@@ -23,6 +23,10 @@ class Api::V1::PlanetsController < ApplicationController
     render json: V1::PlanetSerializer.new(Planet.filter_planet_type(params[:planet_type])), status: 200
   end
 
+  def search_planets 
+    
+  end
+
   private 
     def planet_params 
       params.require(:planet).permit(:name, :planet_type, :year_discovered, :confirmed, :planetary_system_id)
