@@ -151,6 +151,12 @@ describe "Planet Requests" do
 
       expect(response).to be_successful
       # expect(response.status).to eq(200)
+
+      search_results = JSON.parse(response.body, symbolize_names: true)
+
+      # expect(search_results).to have_key(:data)
+      # expect(search_results[:data]).to be_an(Array)
+      # expect(search_results[:data].count).to eq(1)
     end
   end
 
