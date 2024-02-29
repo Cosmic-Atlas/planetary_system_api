@@ -150,7 +150,7 @@ describe "Planet Requests" do
       get "/api/v1/planets/search_planets?name=#{@planet_1.name}"
 
       expect(response).to be_successful
-      # expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
 
       search_results = JSON.parse(response.body, symbolize_names: true)
 
