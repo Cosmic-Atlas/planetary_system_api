@@ -24,7 +24,8 @@ class Api::V1::PlanetsController < ApplicationController
   end
 
   def search_planets 
-    
+    # require 'pry'; binding.pry
+    render json: V1::PlanetSerializer.new(Planet.search_planet_records(params[:name]))
   end
 
   private 
