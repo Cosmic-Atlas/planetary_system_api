@@ -145,6 +145,23 @@ describe "Planet Requests" do
 
       expect(gas_giant_ids).to match_array([@planet_1.id, @planet_2.id])
     end
+
+    it "searches for a planet by name" do 
+      get "/api/v1/planets/search_planets?name=#{@planet_1.name}"
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      search_results = JSON.parse(response.body, symbolize_names: true)
+
+      expect(search_results).to have_key(:data)
+      expect(search_results[:data]).to be_an(Array)
+      expect(search_results[:data].count).to eq(1)
+      expect(search_results[:data][0]).to have_key(:attributes)
+      expect(search_results[:data][0]).to be_a(Hash)
+      expect(search_results[:data][0][:attributes]).to have_key(:name)
+      expect(search_results[:data][0][:attributes][:name]).to eq(@planet_1.name)
+    end
   end
 
   # *~* INVALID REQUESTS *~*

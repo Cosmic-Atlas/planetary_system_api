@@ -17,6 +17,8 @@ Rails.application.routes.draw do
           get :confirmed_planets, :to => 'planets#confirmed_planets' 
           get :unconfirmed_planets, :to => "planets#unconfirmed_planets"
           get :planet_type, :to => "planets#by_planet_type"
+
+          get "search_planets/", :to => 'planets#search_planets'
         end
       end
 
