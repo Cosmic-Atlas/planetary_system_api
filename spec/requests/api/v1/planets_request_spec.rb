@@ -157,6 +157,10 @@ describe "Planet Requests" do
       expect(search_results).to have_key(:data)
       expect(search_results[:data]).to be_an(Array)
       expect(search_results[:data].count).to eq(1)
+      expect(search_results[:data][0]).to have_key(:attributes)
+      expect(search_results[:data][0]).to be_a(Hash)
+      expect(search_results[:data][0][:attributes]).to have_key(:name)
+      expect(search_results[:data][0][:attributes][:name]).to eq(@planet_1.name)
     end
   end
 
