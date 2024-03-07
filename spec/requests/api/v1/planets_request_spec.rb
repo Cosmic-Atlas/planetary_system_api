@@ -162,6 +162,10 @@ describe "Planet Requests" do
       expect(search_results[:data][0][:attributes]).to have_key(:name)
       expect(search_results[:data][0][:attributes][:name]).to eq(@planet_1.name)
     end
+
+    it "returns all planets if name searched not found" do 
+      
+    end
   end
 
   # *~* INVALID REQUESTS *~*
