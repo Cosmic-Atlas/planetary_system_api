@@ -164,7 +164,7 @@ describe "Planet Requests" do
     end
 
     it "returns all planets if name searched not found" do 
-      
+      get "/api/v1/planets/search_planets?name=#{"not a planet name"}"
     end
   end
 
