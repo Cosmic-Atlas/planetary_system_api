@@ -165,6 +165,9 @@ describe "Planet Requests" do
 
     it "returns all planets if name searched not found" do 
       get "/api/v1/planets/search_planets?name=#{"not a planet name"}"
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
     end
   end
 
