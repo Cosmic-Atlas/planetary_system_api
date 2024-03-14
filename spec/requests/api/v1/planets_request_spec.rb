@@ -168,6 +168,14 @@ describe "Planet Requests" do
 
       expect(response).to be_successful
       expect(response.status).to eq(200)
+
+      search_results = JSON.parse(response.body, symbolize_names: true)
+
+      search_results_ids = search_results[:data].map do |result|
+        result[:id].to_i 
+      end
+
+      expect(search_results_ids).to match_array([@planet_1.id, @planet_2.id, @planet_3.id])
     end
   end
 
