@@ -162,6 +162,21 @@ describe "Planet Requests" do
       expect(search_results[:data][0][:attributes]).to have_key(:name)
       expect(search_results[:data][0][:attributes][:name]).to eq(@planet_1.name)
     end
+
+    it "returns all planets if name searched not found" do 
+      get "/api/v1/planets/search_planets?name=#{"not a planet name"}"
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+      search_results = JSON.parse(response.body, symbolize_names: true)
+
+      search_results_ids = search_results[:data].map do |result|
+        result[:id].to_i 
+      end
+
+      expect(search_results_ids).to match_array([@planet_1.id, @planet_2.id, @planet_3.id])
+    end
   end
 
   # *~* INVALID REQUESTS *~*
