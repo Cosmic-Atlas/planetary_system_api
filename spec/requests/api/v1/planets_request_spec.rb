@@ -223,7 +223,7 @@ describe "Planet Requests" do
       post "/api/v1/planets", headers: headers, params: JSON.generate(planet: planet_params)
 
       expect(response).to_not be_successful
-      expect(response.status).to eq(404)
+      expect(response.status).to eq(404) 
 
       error = JSON.parse(response.body, symbolize_names: true)
 
