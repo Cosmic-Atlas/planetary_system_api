@@ -69,6 +69,13 @@
 - Rails Version 7.0.4.x
 - Bundler Version 2.4.9
 
+<!-- Schema -->
+### Schema 
+<div align="center">
+</div>
+
+
+
 <!-- Things you may want to cover:
 
 * Ruby version
