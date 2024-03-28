@@ -72,6 +72,7 @@
 <!-- Schema -->
 ### Schema 
 <div align="center">
+  <img src=".github/schema.png" alt="Schema">
 </div>
 
 
