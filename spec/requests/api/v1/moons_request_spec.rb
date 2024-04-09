@@ -71,6 +71,11 @@ describe "Moons Requests" do
       expect(created_moon.rotational_period).to eq(moon_params[:rotational_period])
       expect(created_moon.magnitude).to eq(moon_params[:magnitude])
     end
+
+    it "gets a list of moons for a specific planet" do 
+      get "/api/v1/moons/planet=#{@planet_1.name}"
+      
+    end
   end
 
   # *~* INVALID REQUESTS *~*
