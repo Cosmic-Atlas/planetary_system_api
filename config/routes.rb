@@ -22,7 +22,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :moons, only: [:index, :show, :create]
+      resources :moons, only: [:index, :show, :create] do 
+        collection do 
+          get :moons_by_planet, :to => 'moons#by_planet'
+        end
+      end
     end
   end
 end
