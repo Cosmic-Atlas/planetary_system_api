@@ -73,7 +73,9 @@ describe "Moons Requests" do
     end
 
     it "gets a list of moons for a specific planet" do 
-      get "/api/v1/moons/moons_by_planet=#{@planet_1.name}"
+      get "/api/v1/moons/moons_by_planet/?moons_by_planet=#{@planet_1.name}"
+
+      expect(response).to be_successful
 
     end
   end
