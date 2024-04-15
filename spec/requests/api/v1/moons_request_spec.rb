@@ -78,6 +78,7 @@ describe "Moons Requests" do
       expect(response).to be_successful
 
       moons = [@moon_1, @moon_2]
+      #test comment
 
       # expect the result to match the moons array
       # do not expect moon 3 or 4 in the array
