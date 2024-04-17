@@ -80,6 +80,9 @@ describe "Moons Requests" do
       moons_results = JSON.parse(response.body, symbolize_names: true)
 
       moons = [@moon_1, @moon_2]
+
+      expect(moons_results[:data].count).to eq(2)
+      require 'pry'; binding.pry
       #test comment
 
       # expect the result to match the moons array
