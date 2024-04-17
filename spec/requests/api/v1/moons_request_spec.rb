@@ -82,14 +82,12 @@ describe "Moons Requests" do
       wanted_moons_ids = [@moon_1.id, @moon_2.id]
 
       moon_results_ids = moons_results[:data].map do |moon| 
-        moon[:id]
+        moon[:id].to_i
       end
+      # require 'pry'; binding.pry
 
       expect(moons_results[:data].count).to eq(2)
-      require 'pry'; binding.pry
-      #test comment
-
-      # expect the result to match the moons array
+      expect(moon_results_ids).to match_array(wanted_moons_ids)
       
       # do not expect moon 3 or 4 in the array
 
