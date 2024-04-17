@@ -71,6 +71,25 @@ describe "Moons Requests" do
       expect(created_moon.rotational_period).to eq(moon_params[:rotational_period])
       expect(created_moon.magnitude).to eq(moon_params[:magnitude])
     end
+
+    it "gets a list of moons for a specific planet" do 
+      get "/api/v1/moons/moons_by_planet/?moons_by_planet=#{@planet_1.name}"
+
+      expect(response).to be_successful
+      #expect(response.status).to eq(200)
+
+      moons_results = JSON.parse(response.body, symbolize_names: true)
+
+      wanted_moons_ids = [@moon_1.id, @moon_2.id]
+
+      moon_results_ids = moons_results[:data].map do |moon| 
+        moon[:id].to_i
+      end
+
+      expect(moons_results[:data].count).to eq(2) # this failed once, result: 3
+      expect(moon_results_ids).to match_array(wanted_moons_ids)
+
+    end
   end
 
   # *~* INVALID REQUESTS *~*

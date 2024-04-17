@@ -11,6 +11,10 @@ class Api::V1::MoonsController < ApplicationController
     render json: V1::MoonSerializer.new(Moon.create!(moon_params)), status: 201
   end
 
+  def by_planet 
+    render json: V1::MoonSerializer.new(Moon.moons_by_planet(params[:moons_by_planet]))
+  end
+
   private 
     def moon_params 
       params.require(:moon).permit(:name, :radius_km, :rotational_period, :magnitude, :planet_id)
