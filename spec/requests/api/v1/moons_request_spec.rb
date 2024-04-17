@@ -76,6 +76,7 @@ describe "Moons Requests" do
       get "/api/v1/moons/moons_by_planet/?moons_by_planet=#{@planet_1.name}"
 
       expect(response).to be_successful
+      #expect(response.status).to eq(200)
 
       moons_results = JSON.parse(response.body, symbolize_names: true)
 
