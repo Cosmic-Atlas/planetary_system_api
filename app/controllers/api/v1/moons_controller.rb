@@ -12,7 +12,7 @@ class Api::V1::MoonsController < ApplicationController
   end
 
   def by_planet 
-    render json: V1::MoonSerializer.new(Moon.moons_by_planet(params[:moons_by_planet]))
+    render json: V1::MoonSerializer.new(Moon.moons_by_planet(params[:moons_by_planet])), status: 200
   end
 
   private 
