@@ -151,5 +151,9 @@ describe "Moons Requests" do
       expect(error[:errors]).to eq(["Validation failed: Radius km can't be blank"])
       expect(Moon.count).to eq(3)
     end
+
+    it "returns an error when searching for moons for a planet that doesnt exist" do 
+      
+    end
   end
 end
