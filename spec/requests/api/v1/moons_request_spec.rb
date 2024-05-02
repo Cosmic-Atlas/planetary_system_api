@@ -153,7 +153,13 @@ describe "Moons Requests" do
     end
 
     it "returns an error when searching for moons for a planet that doesnt exist" do 
-      
+      get "/api/v1/moons/moons_by_planet/?moons_by_planet=planot"
+
+      # expect(response).to_not be_successful
+      # expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+      # require 'pry'; binding.pry
     end
   end
 end
