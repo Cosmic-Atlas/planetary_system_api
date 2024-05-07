@@ -11,8 +11,9 @@ class Api::V1::MoonsController < ApplicationController
     render json: V1::MoonSerializer.new(Moon.create!(moon_params)), status: 201
   end
 
-  def by_planet 
+  def by_planet # if moon.moonsbyplanet is [], then return error and status of 404
     render json: V1::MoonSerializer.new(Moon.moons_by_planet(params[:moons_by_planet])), status: 200
+    # require 'pry'; binding.pry
   end
 
   private 
