@@ -160,6 +160,8 @@ describe "Moons Requests" do
 
       error = JSON.parse(response.body, symbolize_names: true)
       # require 'pry'; binding.pry
+
+      expect(error[:errors][0]).to eq("Planet not found")
     end
   end
 end
