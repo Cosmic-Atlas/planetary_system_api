@@ -76,7 +76,7 @@ describe "Moons Requests" do
       get "/api/v1/moons/moons_by_planet/?moons_by_planet=#{@planet_1.name}"
 
       expect(response).to be_successful
-      #expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
 
       moons_results = JSON.parse(response.body, symbolize_names: true)
 
@@ -150,6 +150,18 @@ describe "Moons Requests" do
 
       expect(error[:errors]).to eq(["Validation failed: Radius km can't be blank"])
       expect(Moon.count).to eq(3)
+    end
+
+    it "returns an error when searching for moons for a planet that doesnt exist" do 
+      get "/api/v1/moons/moons_by_planet/?moons_by_planet=planot"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      error = JSON.parse(response.body, symbolize_names: true)
+      # require 'pry'; binding.pry
+
+      expect(error[:errors][0]).to eq("Planet not found")
     end
   end
 end
