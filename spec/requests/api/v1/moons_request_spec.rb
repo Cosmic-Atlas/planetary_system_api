@@ -7,7 +7,7 @@ describe "Moons Requests" do
     before(:each) do 
       @planetary_system = create(:planetary_system)
 
-      @planet_1 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
+      @planet_1 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant", name: "First Planet")
       @planet_2 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: true, planet_type: "Gas Giant")
       @planet_3 = create(:planet, planetary_system_id: @planetary_system.id, confirmed: false, planet_type: "Terrestrial")
 
@@ -87,6 +87,9 @@ describe "Moons Requests" do
       end
 
       expect(moons_results[:data].count).to eq(2) # this failed once, result: 3
+        #possible planet_1 and planet_2 had same name created automatically, so it was counting 3
+        #moons for the same name. May want to change this to check for planet id as well
+        #currently fixed by changing the name of the planet_1 to First Planet.
       expect(moon_results_ids).to match_array(wanted_moons_ids)
 
     end
