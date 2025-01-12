@@ -63,7 +63,7 @@ describe "Planetary Systems Requests" do
       expect(PlanetarySystem.count).to eq(4)
     end
 
-    it "capitalizes the planetary system is entered lowercase" do 
+    it "capitalizes the planetary system if entered lowercase" do 
       system_params = ({
                           name: "super system",
                           light_years_from_earth: 4,
@@ -132,6 +132,10 @@ describe "Planetary Systems Requests" do
        expect(search_results).to have_key(:data)
        expect(search_results[:data]).to be_an(Array)
        expect(search_results[:data].count).to eq(3)
+    end
+
+    it "returns the number of planets in the system" do 
+      get "/api/v1/planetary_systems/system_planet_count/#{planetary_system_1.id}"
     end
   end
 
