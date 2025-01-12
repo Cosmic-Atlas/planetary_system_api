@@ -135,7 +135,10 @@ describe "Planetary Systems Requests" do
     end
 
     it "returns the number of planets in the system" do 
-      get "/api/v1/planetary_systems/system_planet_count/#{planetary_system_1.id}"
+      get "/api/v1/planetary_systems/system_planet_count?id=#{@planetary_system_1.id}"
+
+      expect(response).to be_successful
+      # expect(response.status).to eq(200)
     end
   end
 
