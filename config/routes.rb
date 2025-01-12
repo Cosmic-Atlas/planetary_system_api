@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         collection do 
           # get "search_planetary_systems/:name", :to => 'planetary_systems#search_planetary_systems'
           get "search_planetary_systems/", :to => 'planetary_systems#search_planetary_systems'
+          get "system_planet_count", :to => 'planetary_systems#system_planet_count'
         end
       end
 
